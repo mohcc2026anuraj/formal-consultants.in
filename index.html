@@ -1,13 +1,1231 @@
-``html
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Formal Career Consultants & Healthcare Academy</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Formal Career Consultants – Expert career consultation, documentation, placements and overseas support for students and professionals worldwide.">
+<meta name="keywords" content="career consultants, overseas jobs, visa guidance, HRD attestation, international placement, FCC">
+<title>Formal Career Consultants | Your Global Career Starts Here</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================
+     TOKENS & RESET
+  ============================ */
+  :root {
+    --black: #111111;
+    --red: #D61F26;
+    --red-dark: #a8181e;
+    --red-light: #e8444a;
+    --white: #FFFFFF;
+    --gray-light: #F5F5F5;
+    --gray-dark: #333333;
+    --gray-mid: #888888;
+    --bg: #FFFFFF;
+    --bg2: #F5F5F5;
+    --text: #111111;
+    --text-muted: #666666;
+    --card-bg: rgba(255,255,255,0.85);
+    --nav-bg: rgba(17,17,17,0.92);
+    --shadow: 0 8px 40px rgba(0,0,0,0.10);
+    --shadow-red: 0 8px 32px rgba(214,31,38,0.18);
+    --radius: 16px;
+    --radius-sm: 8px;
+    --transition: 0.35s cubic-bezier(.4,0,.2,1);
+  }
+  [data-theme="dark"] {
+    --bg: #111111;
+    --bg2: #1a1a1a;
+    --text: #F5F5F5;
+    --text-muted: #aaaaaa;
+    --card-bg: rgba(30,30,30,0.85);
+    --gray-light: #1e1e1e;
+    --gray-dark: #cccccc;
+    --shadow: 0 8px 40px rgba(0,0,0,0.40);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;font-size:16px;}
+  body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);transition:background var(--transition),color var(--transition);overflow-x:hidden;}
+  img{max-width:100%;display:block;}
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  button{cursor:pointer;border:none;background:none;font-family:inherit;}
+
+  /* ============================
+     LOADING SCREEN
+  ============================ */
+  #loader{position:fixed;inset:0;background:#111;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .5s,visibility .5s;}
+  #loader.hidden{opacity:0;visibility:hidden;}
+  .loader-logo{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#D61F26,#111);display:flex;align-items:center;justify-content:center;animation:pulse 1.5s ease-in-out infinite;}
+  .loader-logo span{font-family:'Playfair Display',serif;color:#fff;font-size:1.6rem;font-weight:800;}
+  .loader-bar{width:200px;height:3px;background:#333;margin-top:24px;border-radius:2px;overflow:hidden;}
+  .loader-fill{height:100%;background:var(--red);border-radius:2px;animation:load 1.8s ease-in-out forwards;}
+  @keyframes load{from{width:0}to{width:100%}}
+  @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
+
+  /* ============================
+     TYPOGRAPHY UTILITIES
+  ============================ */
+  .display{font-family:'Playfair Display',serif;line-height:1.15;}
+  .eyebrow{font-size:.75rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--red);}
+  .section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;line-height:1.2;color:var(--text);}
+  .section-sub{font-size:1rem;color:var(--text-muted);max-width:600px;line-height:1.8;}
+
+  /* ============================
+     LAYOUT
+  ============================ */
+  .container{max-width:1200px;margin:0 auto;padding:0 24px;}
+  section{padding:90px 0;}
+
+  /* ============================
+     NAVBAR
+  ============================ */
+  #navbar{position:fixed;top:0;left:0;right:0;z-index:1000;transition:background var(--transition),backdrop-filter var(--transition),box-shadow var(--transition);padding:0;}
+  #navbar.scrolled{background:var(--nav-bg);backdrop-filter:blur(20px);box-shadow:0 2px 30px rgba(0,0,0,0.25);}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px;max-width:1200px;margin:0 auto;padding:0 24px;}
+  .nav-logo{display:flex;align-items:center;gap:10px;}
+  .nav-logo-icon{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#D61F26 0%,#8B0000 100%);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .nav-logo-icon span{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:800;color:#fff;}
+  .nav-logo-text{display:flex;flex-direction:column;line-height:1.1;}
+  .nav-logo-text strong{font-size:.95rem;font-weight:700;color:#fff;font-family:'Playfair Display',serif;}
+  .nav-logo-text small{font-size:.6rem;color:rgba(255,255,255,.6);letter-spacing:.08em;text-transform:uppercase;}
+  .nav-links{display:flex;align-items:center;gap:6px;}
+  .nav-links a{color:rgba(255,255,255,.82);font-size:.85rem;font-weight:500;padding:6px 12px;border-radius:6px;transition:color var(--transition),background var(--transition);}
+  .nav-links a:hover{color:#fff;background:rgba(255,255,255,.1);}
+  .nav-actions{display:flex;align-items:center;gap:12px;}
+  .btn-nav{background:var(--red);color:#fff;padding:9px 20px;border-radius:8px;font-size:.82rem;font-weight:600;transition:background var(--transition),transform var(--transition);}
+  .btn-nav:hover{background:var(--red-dark);transform:translateY(-1px);}
+  .theme-toggle{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;transition:background var(--transition);}
+  .theme-toggle:hover{background:rgba(255,255,255,.2);}
+  .hamburger{display:none;flex-direction:column;gap:5px;padding:6px;background:rgba(255,255,255,.1);border-radius:8px;}
+  .hamburger span{display:block;width:22px;height:2px;background:#fff;transition:transform var(--transition),opacity var(--transition);}
+  .mobile-menu{display:none;position:fixed;inset:0;top:72px;background:rgba(17,17,17,.97);backdrop-filter:blur(20px);z-index:999;padding:32px 24px;flex-direction:column;gap:0;}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{color:#fff;font-size:1.1rem;font-weight:500;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.08);}
+  .mobile-menu a:last-child{border:none;}
+  .mobile-cta{margin-top:24px;background:var(--red);color:#fff!important;text-align:center;border-radius:10px;font-weight:700!important;border:none!important;}
+
+  /* ============================
+     HERO
+  ============================ */
+  #hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:#0a0a0a;}
+  .hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1600&q=80') center/cover no-repeat;}
+  .hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(17,17,17,.88) 0%,rgba(140,10,15,.55) 50%,rgba(17,17,17,.80) 100%);}
+  .hero-content{position:relative;z-index:2;max-width:780px;padding-top:72px;}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(214,31,38,.15);border:1px solid rgba(214,31,38,.3);padding:8px 16px;border-radius:100px;margin-bottom:28px;backdrop-filter:blur(8px);}
+  .hero-badge span{font-size:.75rem;font-weight:600;color:#ff6b6b;letter-spacing:.1em;text-transform:uppercase;}
+  .hero-dot{width:6px;height:6px;border-radius:50%;background:var(--red);animation:blink 2s ease-in-out infinite;}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+  .hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,6vw,5rem);font-weight:800;color:#fff;line-height:1.08;margin-bottom:20px;}
+  .hero-title .accent{color:var(--red);}
+  .hero-sub{font-size:1.05rem;color:rgba(255,255,255,.75);line-height:1.8;max-width:560px;margin-bottom:36px;}
+  .hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:64px;}
+  .btn-primary{background:var(--red);color:#fff;padding:15px 32px;border-radius:10px;font-weight:600;font-size:.95rem;display:inline-flex;align-items:center;gap:8px;transition:background var(--transition),transform var(--transition),box-shadow var(--transition);}
+  .btn-primary:hover{background:var(--red-dark);transform:translateY(-2px);box-shadow:var(--shadow-red);}
+  .btn-outline{border:1.5px solid rgba(255,255,255,.35);color:#fff;padding:15px 32px;border-radius:10px;font-weight:500;font-size:.95rem;backdrop-filter:blur(8px);background:rgba(255,255,255,.07);transition:all var(--transition);}
+  .btn-outline:hover{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.6);transform:translateY(-2px);}
+  .hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.12);border-radius:16px;overflow:hidden;backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.1);}
+  .stat-box{padding:24px 16px;text-align:center;background:rgba(17,17,17,.45);}
+  .stat-num{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:800;color:#fff;display:block;}
+  .stat-label{font-size:.72rem;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.08em;margin-top:4px;}
+  .hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.5);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;z-index:2;}
+  .scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,.5),transparent);animation:scrollDown 2s ease-in-out infinite;}
+  @keyframes scrollDown{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+  /* ============================
+     ABOUT
+  ============================ */
+  #about{background:var(--bg);}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+  .about-visual{position:relative;}
+  .about-img{border-radius:20px;overflow:hidden;aspect-ratio:4/5;position:relative;}
+  .about-img img{width:100%;height:100%;object-fit:cover;}
+  .about-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(214,31,38,.3),transparent);}
+  .about-badge{position:absolute;bottom:-20px;right:-20px;background:var(--red);color:#fff;padding:20px 24px;border-radius:16px;text-align:center;box-shadow:var(--shadow-red);}
+  .about-badge strong{display:block;font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:800;}
+  .about-badge small{font-size:.72rem;opacity:.85;text-transform:uppercase;letter-spacing:.06em;}
+  .about-content{display:flex;flex-direction:column;gap:20px;}
+  .about-features{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px;}
+  .feat-item{display:flex;align-items:flex-start;gap:12px;padding:16px;border-radius:12px;background:var(--bg2);transition:transform var(--transition),box-shadow var(--transition);}
+  .feat-item:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+  .feat-icon{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,rgba(214,31,38,.15),rgba(214,31,38,.05));display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+  .feat-text strong{display:block;font-size:.85rem;font-weight:600;color:var(--text);}
+  .feat-text span{font-size:.75rem;color:var(--text-muted);}
+
+  /* ============================
+     SERVICES
+  ============================ */
+  #services{background:var(--bg2);}
+  .section-header{text-align:center;margin-bottom:56px;}
+  .section-header .section-sub{margin:16px auto 0;}
+  .services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;}
+  .service-card{background:var(--card-bg);backdrop-filter:blur(10px);border-radius:var(--radius);padding:32px 24px;border:1px solid rgba(0,0,0,.06);transition:transform var(--transition),box-shadow var(--transition),border-color var(--transition);cursor:default;position:relative;overflow:hidden;}
+  .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),#ff6b6b);transform:scaleX(0);transition:transform var(--transition);transform-origin:left;}
+  .service-card:hover::before{transform:scaleX(1);}
+  .service-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,.12);border-color:rgba(214,31,38,.2);}
+  [data-theme="dark"] .service-card{border-color:rgba(255,255,255,.06);}
+  .svc-icon{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,rgba(214,31,38,.15),rgba(214,31,38,.06));display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:18px;}
+  .svc-title{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:10px;font-family:'Poppins',sans-serif;}
+  .svc-desc{font-size:.82rem;color:var(--text-muted);line-height:1.75;}
+
+  /* ============================
+     COUNTRIES
+  ============================ */
+  #countries{background:var(--bg);}
+  .countries-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;}
+  .country-card{border-radius:var(--radius);overflow:hidden;position:relative;aspect-ratio:4/3;cursor:pointer;transition:transform var(--transition),box-shadow var(--transition);}
+  .country-card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 24px 60px rgba(0,0,0,.2);}
+  .country-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+  .country-card:hover img{transform:scale(1.08);}
+  .country-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,17,.9) 0%,rgba(17,17,17,.2) 60%,transparent 100%);}
+  .country-info{position:absolute;bottom:0;left:0;right:0;padding:20px;}
+  .country-flag{font-size:1.6rem;display:block;margin-bottom:6px;}
+  .country-name{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:#fff;}
+  .country-tag{display:inline-block;background:var(--red);color:#fff;font-size:.65rem;font-weight:600;padding:3px 10px;border-radius:100px;margin-top:6px;text-transform:uppercase;letter-spacing:.06em;}
+
+  /* ============================
+     WHY CHOOSE US
+  ============================ */
+  #why{background:var(--black);position:relative;overflow:hidden;}
+  #why::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(214,31,38,.15) 0%,transparent 70%);pointer-events:none;}
+  #why .section-title{color:#fff;}
+  #why .section-sub{color:rgba(255,255,255,.6);}
+  #why .eyebrow{color:#ff6b6b;}
+  .why-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:48px;}
+  .why-item{display:flex;align-items:flex-start;gap:14px;padding:22px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;transition:background var(--transition),border-color var(--transition);}
+  .why-item:hover{background:rgba(214,31,38,.08);border-color:rgba(214,31,38,.25);}
+  .why-check{width:28px;height:28px;border-radius:8px;background:var(--red);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.8rem;color:#fff;}
+  .why-text strong{display:block;color:#fff;font-size:.9rem;font-weight:600;}
+  .why-text span{font-size:.78rem;color:rgba(255,255,255,.5);margin-top:3px;display:block;}
+
+  /* ============================
+     PROCESS TIMELINE
+  ============================ */
+  #process{background:var(--bg2);}
+  .timeline{display:flex;gap:0;position:relative;overflow-x:auto;padding-bottom:16px;}
+  .timeline::after{content:'';position:absolute;top:40px;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--red),rgba(214,31,38,.2));z-index:0;}
+  .tl-step{flex:1;min-width:140px;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:1;}
+  .tl-dot{width:80px;height:80px;border-radius:50%;background:var(--card-bg);border:2px solid rgba(214,31,38,.3);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:background var(--transition),border-color var(--transition),transform var(--transition);box-shadow:var(--shadow);}
+  .tl-step:hover .tl-dot{background:var(--red);border-color:var(--red);transform:scale(1.1);}
+  .tl-step:hover .tl-dot span{color:#fff;}
+  .tl-dot span{font-size:1.3rem;}
+  .tl-label{font-size:.78rem;font-weight:600;color:var(--text);margin-top:14px;line-height:1.3;}
+  .tl-num{font-family:'Playfair Display',serif;font-size:.65rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.08em;margin-top:3px;}
+
+  /* ============================
+     TESTIMONIALS
+  ============================ */
+  #testimonials{background:var(--bg);}
+  .testimonials-slider{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .testi-card{background:var(--card-bg);border:1px solid rgba(0,0,0,.07);border-radius:var(--radius);padding:32px 28px;position:relative;overflow:hidden;transition:transform var(--transition),box-shadow var(--transition);}
+  [data-theme="dark"] .testi-card{border-color:rgba(255,255,255,.07);}
+  .testi-card::before{content:'❝';position:absolute;top:16px;right:20px;font-size:3.5rem;color:rgba(214,31,38,.1);font-family:'Playfair Display',serif;line-height:1;}
+  .testi-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,.1);}
+  .testi-stars{color:#D61F26;font-size:.9rem;letter-spacing:3px;margin-bottom:14px;}
+  .testi-text{font-size:.9rem;color:var(--text-muted);line-height:1.8;font-style:italic;margin-bottom:20px;}
+  .testi-author{display:flex;align-items:center;gap:12px;}
+  .testi-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--red),#8B0000);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.95rem;font-family:'Playfair Display',serif;}
+  .testi-name{font-weight:600;font-size:.88rem;color:var(--text);}
+  .testi-loc{font-size:.75rem;color:var(--text-muted);}
+
+  /* ============================
+     FAQ
+  ============================ */
+  #faq{background:var(--bg2);}
+  .faq-list{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:12px;}
+  .faq-item{background:var(--card-bg);border:1px solid rgba(0,0,0,.07);border-radius:14px;overflow:hidden;transition:box-shadow var(--transition);}
+  [data-theme="dark"] .faq-item{border-color:rgba(255,255,255,.07);}
+  .faq-item.open{box-shadow:var(--shadow);}
+  .faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;padding:20px 24px;text-align:left;font-size:.95rem;font-weight:600;color:var(--text);gap:16px;transition:color var(--transition);}
+  .faq-q:hover{color:var(--red);}
+  .faq-icon{width:28px;height:28px;border-radius:8px;background:rgba(214,31,38,.1);display:flex;align-items:center;justify-content:center;color:var(--red);font-size:1rem;flex-shrink:0;transition:transform var(--transition),background var(--transition);}
+  .faq-item.open .faq-icon{transform:rotate(45deg);background:var(--red);color:#fff;}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease;}
+  .faq-item.open .faq-a{max-height:300px;}
+  .faq-a p{padding:0 24px 20px;font-size:.88rem;color:var(--text-muted);line-height:1.8;}
+
+  /* ============================
+     CONTACT
+  ============================ */
+  #contact{background:var(--bg);}
+  .contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:48px;align-items:start;}
+  .contact-info{display:flex;flex-direction:column;gap:24px;}
+  .contact-info-card{padding:28px;background:var(--bg2);border-radius:16px;}
+  .contact-info-card h3{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--text);margin-bottom:20px;}
+  .contact-detail{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px;}
+  .cd-icon{width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,rgba(214,31,38,.15),rgba(214,31,38,.06));display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+  .cd-text strong{display:block;font-size:.8rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;}
+  .cd-text a,.cd-text span{font-size:.9rem;color:var(--text);font-weight:500;}
+  .cd-text a:hover{color:var(--red);}
+  .map-container{border-radius:14px;overflow:hidden;height:200px;background:var(--bg2);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:.85rem;border:1px solid rgba(0,0,0,.08);margin-top:4px;}
+  [data-theme="dark"] .map-container{border-color:rgba(255,255,255,.07);}
+  /* GLASSMORPHISM FORM */
+  .contact-form-wrap{background:rgba(255,255,255,.7);backdrop-filter:blur(20px);border-radius:20px;padding:40px 36px;border:1px solid rgba(255,255,255,.8);box-shadow:0 20px 60px rgba(0,0,0,.08);}
+  [data-theme="dark"] .contact-form-wrap{background:rgba(30,30,30,.7);border-color:rgba(255,255,255,.08);box-shadow:0 20px 60px rgba(0,0,0,.3);}
+  .contact-form-wrap h3{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin-bottom:6px;color:var(--text);}
+  .contact-form-wrap p{font-size:.85rem;color:var(--text-muted);margin-bottom:28px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .form-group{display:flex;flex-direction:column;gap:7px;margin-bottom:14px;}
+  .form-group label{font-size:.78rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;}
+  .form-group input,.form-group select,.form-group textarea{width:100%;padding:12px 16px;border:1.5px solid rgba(0,0,0,.1);border-radius:10px;background:rgba(255,255,255,.8);color:var(--text);font-family:'Poppins',sans-serif;font-size:.88rem;transition:border-color var(--transition),box-shadow var(--transition);}
+  [data-theme="dark"] .form-group input,[data-theme="dark"] .form-group select,[data-theme="dark"] .form-group textarea{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1);color:#fff;}
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 3px rgba(214,31,38,.12);}
+  .form-group textarea{resize:vertical;min-height:110px;}
+  .form-group select option{background:var(--bg);color:var(--text);}
+  .btn-submit{width:100%;background:var(--red);color:#fff;padding:15px;border-radius:10px;font-weight:700;font-size:.95rem;transition:background var(--transition),transform var(--transition),box-shadow var(--transition);}
+  .btn-submit:hover{background:var(--red-dark);transform:translateY(-2px);box-shadow:var(--shadow-red);}
+  .form-success{display:none;text-align:center;padding:20px;color:var(--red);}
+  .form-success.show{display:block;}
+  .upload-area{border:2px dashed rgba(214,31,38,.3);border-radius:12px;padding:28px 20px;text-align:center;cursor:pointer;background:rgba(214,31,38,.03);transition:border-color var(--transition),background var(--transition);}
+  .upload-area:hover,.upload-area.dragover{border-color:var(--red);background:rgba(214,31,38,.07);}
+  .upload-icon{font-size:2.2rem;margin-bottom:8px;}
+  .upload-text{font-size:.88rem;color:var(--text-muted);}
+  .upload-text strong{color:var(--red);}
+  .upload-sub{font-size:.74rem;color:var(--text-muted);margin-top:5px;}
+  .upload-preview{display:flex;flex-direction:column;align-items:center;gap:10px;}
+  .upload-remove{background:rgba(214,31,38,.1);color:var(--red);border:1px solid rgba(214,31,38,.25);padding:6px 14px;border-radius:8px;font-size:.76rem;font-weight:600;cursor:pointer;transition:background var(--transition);}
+  .upload-remove:hover{background:var(--red);color:#fff;}
+
+  /* ============================
+     FOOTER
+  ============================ */
+  #footer{background:#0a0a0a;color:rgba(255,255,255,.7);padding:64px 0 0;}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:40px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.08);}
+  .footer-brand p{font-size:.82rem;line-height:1.8;margin-top:14px;max-width:280px;}
+  .footer-social{display:flex;gap:10px;margin-top:20px;}
+  .social-btn{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.7);font-size:.85rem;transition:background var(--transition),color var(--transition),transform var(--transition);}
+  .social-btn:hover{background:var(--red);color:#fff;transform:translateY(-2px);}
+  .footer-col h4{color:#fff;font-size:.88rem;font-weight:700;margin-bottom:18px;text-transform:uppercase;letter-spacing:.08em;}
+  .footer-col ul li{margin-bottom:10px;}
+  .footer-col ul li a{font-size:.82rem;color:rgba(255,255,255,.55);transition:color var(--transition);}
+  .footer-col ul li a:hover{color:var(--red);}
+  .footer-contact-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;}
+  .footer-contact-item span:first-child{font-size:.9rem;flex-shrink:0;}
+  .footer-contact-item a,.footer-contact-item span:last-child{font-size:.8rem;color:rgba(255,255,255,.55);}
+  .footer-contact-item a:hover{color:var(--red);}
+  .footer-bottom{padding:20px 0;display:flex;align-items:center;justify-content:space-between;font-size:.78rem;color:rgba(255,255,255,.4);}
+  .footer-bottom a{color:rgba(255,255,255,.4);}
+  .footer-bottom a:hover{color:var(--red);}
+
+  /* ============================
+     FLOATING BUTTONS
+  ============================ */
+  .float-group{position:fixed;bottom:28px;right:24px;display:flex;flex-direction:column;gap:12px;z-index:900;}
+  .float-btn{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.25rem;box-shadow:0 4px 20px rgba(0,0,0,.2);transition:transform var(--transition),box-shadow var(--transition);}
+  .float-btn:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 8px 28px rgba(0,0,0,.25);}
+  .float-wa{background:#25D366;color:#fff;}
+  .float-consult{background:var(--red);color:#fff;width:auto;height:auto;border-radius:100px;padding:12px 18px;font-size:.78rem;font-weight:700;letter-spacing:.04em;}
+  .float-top{background:var(--black);color:#fff;opacity:0;pointer-events:none;transition:opacity var(--transition);}
+  .float-top.show{opacity:1;pointer-events:all;}
+
+  /* ============================
+     ANIMATIONS / REVEAL
+  ============================ */
+  .reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+  .reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal-left.visible{opacity:1;transform:translateX(0);}
+  .reveal-right{opacity:0;transform:translateX(40px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal-right.visible{opacity:1;transform:translateX(0);}
+  .stagger > *{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+  .stagger.visible > *{opacity:1;transform:translateY(0);}
+  .stagger.visible > *:nth-child(1){transition-delay:.05s;}
+  .stagger.visible > *:nth-child(2){transition-delay:.1s;}
+  .stagger.visible > *:nth-child(3){transition-delay:.15s;}
+  .stagger.visible > *:nth-child(4){transition-delay:.2s;}
+  .stagger.visible > *:nth-child(5){transition-delay:.25s;}
+  .stagger.visible > *:nth-child(6){transition-delay:.3s;}
+  .stagger.visible > *:nth-child(7){transition-delay:.35s;}
+  .stagger.visible > *:nth-child(8){transition-delay:.4s;}
+  .stagger.visible > *:nth-child(9){transition-delay:.45s;}
+  .stagger.visible > *:nth-child(10){transition-delay:.5s;}
+
+  /* ============================
+     RESPONSIVE
+  ============================ */
+  @media(max-width:1024px){
+    .about-grid{grid-template-columns:1fr;gap:40px;}
+    .about-visual{display:none;}
+    .contact-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .testimonials-slider{grid-template-columns:1fr 1fr;}
+    .testimonials-slider .testi-card:last-child{display:none;}
+  }
+  @media(max-width:768px){
+    .nav-links,.btn-nav{display:none;}
+    .hamburger{display:flex;}
+    .hero-stats{grid-template-columns:repeat(2,1fr);}
+    .services-grid{grid-template-columns:1fr 1fr;}
+    .countries-grid{grid-template-columns:1fr 1fr;}
+    .form-row{grid-template-columns:1fr;}
+    .testimonials-slider{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;}
+    .footer-bottom{flex-direction:column;gap:8px;text-align:center;}
+    section{padding:64px 0;}
+    .contact-form-wrap{padding:28px 20px;}
+    .timeline{gap:0;}
+  }
+  @media(max-width:480px){
+    .services-grid{grid-template-columns:1fr;}
+    .countries-grid{grid-template-columns:1fr;}
+    .hero-btns{flex-direction:column;}
+    .btn-primary,.btn-outline{text-align:center;justify-content:center;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;}
+  }
+</style>
 </head>
 <body>
-  <h1>Formal Career Consultants & Healthcare Academy</h1>
-  <p>Our website is currently under development.</p>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo"><span>FCC</span></div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      <div class="nav-logo-icon"><span>FCC</span></div>
+      <div class="nav-logo-text">
+        <strong>Formal Career</strong>
+        <small>Consultants</small>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#countries">Countries</a></li>
+      <li><a href="#why">Why Us</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      <a href="#contact" class="btn-nav">Book Consultation</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="#hero" onclick="closeMenu()">Home</a>
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#countries" onclick="closeMenu()">Countries</a>
+  <a href="#why" onclick="closeMenu()">Why Choose Us</a>
+  <a href="#testimonials" onclick="closeMenu()">Testimonials</a>
+  <a href="#faq" onclick="closeMenu()">FAQ</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+  <a href="#contact" class="mobile-cta" onclick="closeMenu()">📅 Book Free Consultation</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <div class="hero-dot"></div>
+        <span>Trusted Career Consultants Since 2014</span>
+      </div>
+      <h1 class="hero-title display">
+        Your Global Career<br><span class="accent">Starts Here.</span>
+      </h1>
+      <p class="hero-sub">
+        Formal Career Consultants helps students and professionals build successful international careers through expert consultation, documentation, placements and overseas support.
+      </p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">📅 Book Free Consultation</a>
+        <a href="#contact" class="btn-outline">Contact Us →</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-box">
+          <span class="stat-num" data-target="5000">0</span>+
+          <div class="stat-label">Successful Clients</div>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num" data-target="25">0</span>+
+          <div class="stat-label">Countries</div>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num" data-target="98">0</span>%
+          <div class="stat-label">Visa Success Rate</div>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num" data-target="10">0</span>+
+          <div class="stat-label">Years Experience</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal-left">
+        <div class="about-img">
+          <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=700&q=80" alt="FCC Team at work" loading="lazy">
+          <div class="about-img-overlay"></div>
+        </div>
+        <div class="about-badge">
+          <strong>10+</strong>
+          <small>Years of<br>Excellence</small>
+        </div>
+      </div>
+      <div class="about-content reveal-right">
+        <span class="eyebrow">About FCC</span>
+        <h2 class="section-title">A Trusted Partner for Your International Career</h2>
+        <p class="section-sub">
+          Formal Career Consultants is a premier career consulting company dedicated to helping candidates achieve their overseas education and employment aspirations. We combine expert knowledge with a personalised approach to make your global journey seamless.
+        </p>
+        <div class="about-features stagger">
+          <div class="feat-item">
+            <div class="feat-icon">🎯</div>
+            <div class="feat-text">
+              <strong>Professional Guidance</strong>
+              <span>Tailored advice from certified career experts</span>
+            </div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-icon">⚡</div>
+            <div class="feat-text">
+              <strong>Fast Documentation</strong>
+              <span>Swift, accurate paperwork processing</span>
+            </div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-icon">🏆</div>
+            <div class="feat-text">
+              <strong>Expert Consultants</strong>
+              <span>Seasoned professionals with global networks</span>
+            </div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-icon">🤝</div>
+            <div class="feat-text">
+              <strong>End-to-End Support</strong>
+              <span>With you from consultation to career abroad</span>
+            </div>
+          </div>
+        </div>
+        <a href="#contact" class="btn-primary" style="margin-top:8px;display:inline-flex;align-self:flex-start;">Learn More →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">What We Offer</span>
+      <h2 class="section-title">Our Expert Services</h2>
+      <p class="section-sub">From consultation to career placement, we offer a comprehensive suite of services designed to open international doors for you.</p>
+    </div>
+    <div class="services-grid stagger">
+      <div class="service-card">
+        <div class="svc-icon">💼</div>
+        <h3 class="svc-title">Career Consultation</h3>
+        <p class="svc-desc">Personalised one-on-one sessions to map the best international career path for your profile, skills, and aspirations.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">📜</div>
+        <h3 class="svc-title">HRD & Embassy Attestation</h3>
+        <p class="svc-desc">Complete attestation services from HRD, MEA, and Embassy levels, ensuring your documents are globally recognised.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">✅</div>
+        <h3 class="svc-title">Certificate Verification</h3>
+        <p class="svc-desc">Authentic verification of educational and professional credentials from recognised authorities worldwide.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">🌐</div>
+        <h3 class="svc-title">Placement Services</h3>
+        <p class="svc-desc">Direct connections with top employers across 25+ countries to secure meaningful international employment.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">🗓️</div>
+        <h3 class="svc-title">Biometric Appointment Booking</h3>
+        <p class="svc-desc">Hassle-free scheduling and management of biometric appointments at official visa centres.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">📝</div>
+        <h3 class="svc-title">Exam Booking</h3>
+        <p class="svc-desc">Assistance with IELTS, OET, PTE, and other required examinations — booking, preparation guidance, and more.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">📁</div>
+        <h3 class="svc-title">Documentation Support</h3>
+        <p class="svc-desc">Thorough preparation, review, and management of all documentation required for visas and applications.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">🛂</div>
+        <h3 class="svc-title">Visa Guidance</h3>
+        <p class="svc-desc">Expert visa counselling with a 98% success rate — work, student, and skilled migration visas.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">✈️</div>
+        <h3 class="svc-title">Overseas Career Support</h3>
+        <p class="svc-desc">Pre-departure briefings, accommodation guidance, and ongoing support once you arrive in your destination country.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">🗺️</div>
+        <h3 class="svc-title">International Career Planning</h3>
+        <p class="svc-desc">Long-term career roadmaps tailored to your destination country's job market, licensing, and growth prospects.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTRIES -->
+<section id="countries">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Where We Send You</span>
+      <h2 class="section-title">Destination Countries</h2>
+      <p class="section-sub">We have strong networks and proven track records in 25+ countries across the globe.</p>
+    </div>
+    <div class="countries-grid stagger">
+      <div class="country-card">
+        <img src="https://images.unsplash.com/photo-1526129318478-62ed807ebdf9?w=500&q=80" alt="Canada" loading="lazy">
+        <div class="country-overlay"></div>
+        <div class="country-info">
+          <span class="country-flag">🇨🇦</span>
+          <div class="country-name">Canada</div>
+          <span class="country-tag">Express Entry</span>
+        </div>
+      </div>
+      <div class="country-card">
+        <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=500&q=80" alt="Germany" loading="lazy">
+        <div class="country-overlay"></div>
+        <div class="country-info">
+          <span class="country-flag">🇩🇪</span>
+          <div class="country-name">Germany</div>
+          <span class="country-tag">Skilled Worker Visa</span>
+        </div>
+      </div>
+      <div class="country-card">
+        <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=500&q=80" alt="United Kingdom" loading="lazy">
+        <div class="country-overlay"></div>
+        <div class="country-info">
+          <span class="country-flag">🇬🇧</span>
+          <div class="country-name">United Kingdom</div>
+          <span class="country-tag">Skilled Worker</span>
+        </div>
+      </div>
+      <div class="country-card">
+        <img src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=500&q=80" alt="Australia" loading="lazy">
+        <div class="country-overlay"></div>
+        <div class="country-info">
+          <span class="country-flag">🇦🇺</span>
+          <div class="country-name">Australia</div>
+          <span class="country-tag">SkillSelect</span>
+        </div>
+      </div>
+      <div class="country-card">
+        <img src="https://images.unsplash.com/photo-1589802829985-817e51171b92?w=500&q=80" alt="New Zealand" loading="lazy">
+        <div class="country-overlay"></div>
+        <div class="country-info">
+          <span class="country-flag">🇳🇿</span>
+          <div class="country-name">New Zealand</div>
+          <span class="country-tag">Accredited Employer</span>
+        </div>
+      </div>
+      <div class="country-card">
+        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=500&q=80" alt="UAE" loading="lazy">
+        <div class="country-overlay"></div>
+        <div class="country-info">
+          <span class="country-flag">🇦🇪</span>
+          <div class="country-name">United Arab Emirates</div>
+          <span class="country-tag">Work Visa</span>
+        </div>
+      </div>
+      <div class="country-card">
+        <img src="https://images.unsplash.com/photo-1551524559-8af4e6624178?w=500&q=80" alt="Qatar" loading="lazy">
+        <div class="country-overlay"></div>
+        <div class="country-info">
+          <span class="country-flag">🇶🇦</span>
+          <div class="country-name">Qatar</div>
+          <span class="country-tag">Residence Permit</span>
+        </div>
+      </div>
+      <div class="country-card">
+        <img src="https://images.unsplash.com/photo-1586724237569-f3d0c1dee8c6?w=500&q=80" alt="Saudi Arabia" loading="lazy">
+        <div class="country-overlay"></div>
+        <div class="country-info">
+          <span class="country-flag">🇸🇦</span>
+          <div class="country-name">Saudi Arabia</div>
+          <span class="country-tag">Iqama</span>
+        </div>
+      </div>
+      <div class="country-card">
+        <img src="https://images.unsplash.com/photo-1549740425-5e9ed4d8cd34?w=500&q=80" alt="Ireland" loading="lazy">
+        <div class="country-overlay"></div>
+        <div class="country-info">
+          <span class="country-flag">🇮🇪</span>
+          <div class="country-name">Ireland</div>
+          <span class="country-tag">Critical Skills</span>
+        </div>
+      </div>
+      <div class="country-card">
+        <img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=500&q=80" alt="Singapore" loading="lazy">
+        <div class="country-overlay"></div>
+        <div class="country-info">
+          <span class="country-flag">🇸🇬</span>
+          <div class="country-name">Singapore</div>
+          <span class="country-tag">Employment Pass</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section id="why">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Our Advantage</span>
+      <h2 class="section-title">Why Choose FCC?</h2>
+      <p class="section-sub">We don't just process applications — we build careers. Here's why thousands trust us with their futures.</p>
+    </div>
+    <div class="why-grid stagger">
+      <div class="why-item">
+        <div class="why-check">✓</div>
+        <div class="why-text"><strong>Trusted Consultants</strong><span>Verified experts with years of immigration and placement experience</span></div>
+      </div>
+      <div class="why-item">
+        <div class="why-check">✓</div>
+        <div class="why-text"><strong>Transparent Process</strong><span>No hidden fees — clear milestones at every step</span></div>
+      </div>
+      <div class="why-item">
+        <div class="why-check">✓</div>
+        <div class="why-text"><strong>Affordable Fees</strong><span>Competitive pricing without compromising on quality</span></div>
+      </div>
+      <div class="why-item">
+        <div class="why-check">✓</div>
+        <div class="why-text"><strong>Expert Team</strong><span>Led by MD Anuraj with a highly trained specialist team</span></div>
+      </div>
+      <div class="why-item">
+        <div class="why-check">✓</div>
+        <div class="why-text"><strong>Quick Processing</strong><span>Streamlined workflows for faster application timelines</span></div>
+      </div>
+      <div class="why-item">
+        <div class="why-check">✓</div>
+        <div class="why-text"><strong>Worldwide Opportunities</strong><span>Network spanning 25+ countries across 6 continents</span></div>
+      </div>
+      <div class="why-item">
+        <div class="why-check">✓</div>
+        <div class="why-text"><strong>Personalised Guidance</strong><span>Individual roadmaps crafted for your unique profile</span></div>
+      </div>
+      <div class="why-item">
+        <div class="why-check">✓</div>
+        <div class="why-text"><strong>Excellent Customer Support</strong><span>Dedicated relationship managers available 6 days a week</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS TIMELINE -->
+<section id="process">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">How It Works</span>
+      <h2 class="section-title">Your Journey to a Career Abroad</h2>
+      <p class="section-sub">A clear, guided six-step process from your first conversation to your first day abroad.</p>
+    </div>
+    <div class="timeline reveal" style="margin-top:48px;">
+      <div class="tl-step">
+        <div class="tl-dot"><span>🤝</span></div>
+        <div class="tl-label">Consultation</div>
+        <div class="tl-num">Step 01</div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-dot"><span>📁</span></div>
+        <div class="tl-label">Documentation</div>
+        <div class="tl-num">Step 02</div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-dot"><span>✅</span></div>
+        <div class="tl-label">Verification</div>
+        <div class="tl-num">Step 03</div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-dot"><span>🏛️</span></div>
+        <div class="tl-label">Attestation</div>
+        <div class="tl-num">Step 04</div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-dot"><span>🛂</span></div>
+        <div class="tl-label">Visa Guidance</div>
+        <div class="tl-num">Step 05</div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-dot"><span>✈️</span></div>
+        <div class="tl-label">Career Abroad</div>
+        <div class="tl-num">Step 06</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Client Stories</span>
+      <h2 class="section-title">What Our Clients Say</h2>
+      <p class="section-sub">Over 5,000 professionals have trusted FCC with their international career journeys. Here are some of their stories.</p>
+    </div>
+    <div class="testimonials-slider stagger" style="margin-top:48px;">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Professional service from start to finish. The FCC team guided me through every step of my UK nursing visa application. I was placed within 3 months. Highly recommended."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">P</div>
+          <div>
+            <div class="testi-name">Priya Menon</div>
+            <div class="testi-loc">📍 Now in London, UK</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Very supportive team throughout. My overseas documentation process, which I thought would take months, was completed in weeks. I'm now happily settled in Dubai."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">R</div>
+          <div>
+            <div class="testi-name">Rahul Sharma</div>
+            <div class="testi-loc">📍 Now in Dubai, UAE</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Excellent documentation assistance. FCC handled my HRD attestation, embassy verification, and all paperwork for my Germany job seeker visa. Flawless experience."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">A</div>
+          <div>
+            <div class="testi-name">Ananya Krishnan</div>
+            <div class="testi-loc">📍 Now in Berlin, Germany</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Got Questions?</span>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-sub">Answers to the most common questions about our process and services.</p>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How long does the overall process take?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><p>The timeline varies depending on the destination country and service required. Typically, documentation and attestation take 2–4 weeks, while visa processing can range from 4 to 12 weeks. During your free consultation, we provide a personalised estimated timeline based on your specific case.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What documents are required to get started?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><p>Requirements differ by destination and visa type. Generally, you will need educational certificates, experience letters, passport copies, photographs, and professional qualifications. Our consultants will provide you with a comprehensive, country-specific document checklist during your initial consultation.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Which countries does FCC support?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><p>We currently support placements and visa guidance for 25+ countries including Canada, Germany, the United Kingdom, Australia, New Zealand, UAE, Qatar, Saudi Arabia, Ireland, and Singapore. Contact us to enquire about your specific destination.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How do I book a consultation?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><p>You can book a free consultation by filling out the contact form on this page, calling us at +91 7892603093, or sending an email to hrmanager@formalgroupinhelath.com. Our team will reach out within 24 hours to schedule your session at a convenient time.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do you provide placement assistance?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><p>Yes, placement assistance is one of our core services. We have strong relationships with reputable employers across 25+ countries and actively work to match your qualifications and experience with suitable overseas job opportunities in your field.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What is your visa success rate?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><p>We maintain a 98% visa success rate, achieved through meticulous documentation review, thorough pre-application checks, and expert guidance through every stage of the visa process. In the rare event of a refusal, we work with you to understand the reasons and reapply.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Let's Talk</span>
+      <h2 class="section-title">Get in Touch</h2>
+      <p class="section-sub">Ready to take the next step? Fill out the form and one of our consultants will be in touch within 24 hours.</p>
+    </div>
+    <div class="contact-grid" style="margin-top:48px;">
+      <div class="contact-info reveal-left">
+        <div class="contact-info-card">
+          <h3>Formal Career Consultants</h3>
+          <div class="contact-detail">
+            <div class="cd-icon">📞</div>
+            <div class="cd-text">
+              <strong>Phone</strong>
+              <a href="tel:+917892603093">+91 7892603093</a>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="cd-icon">✉️</div>
+            <div class="cd-text">
+              <strong>Email</strong>
+              <a href="mailto:hrmanager@formalgroupinhelath.com">hrmanager@formalgroupinhelath.com</a>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="cd-icon">👤</div>
+            <div class="cd-text">
+              <strong>Managing Director</strong>
+              <span>Anuraj</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="reveal-right">
+        <div class="contact-form-wrap">
+          <h3>Book a Free Consultation</h3>
+          <p>We'll get back to you within 24 hours.</p>
+          <div id="formSuccess" class="form-success">
+            <p style="font-size:1.4rem;margin-bottom:8px;">🎉</p>
+            <p style="font-weight:700;color:var(--text);">Thank you! We'll be in touch shortly.</p>
+          </div>
+          <div id="formError" class="form-success" style="color:#c0392b;">
+            <p style="font-size:1.4rem;margin-bottom:8px;">⚠️</p>
+            <p style="font-weight:700;color:var(--text);">Something went wrong. Please try again or contact us directly.</p>
+          </div>
+          <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="access_key" value="5057b7e3-d2b9-4e1e-a69a-362e6f3689c1">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" name="name" placeholder="Your name" required>
+              </div>
+              <div class="form-group">
+                <label>Phone</label>
+                <input type="tel" name="phone" placeholder="+91 00000 00000" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" name="email" placeholder="you@email.com" required>
+            </div>
+            <div class="form-group">
+              <label>Service Required</label>
+              <select name="service" required>
+                <option value="" disabled selected>Select a service</option>
+                <option>Career Consultation</option>
+                <option>HRD & Embassy Attestation</option>
+                <option>Certificate Verification</option>
+                <option>Placement Services</option>
+                <option>Visa Guidance</option>
+                <option>Documentation Support</option>
+                <option>Overseas Career Support</option>
+                <option>International Career Planning</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Message</label>
+              <textarea name="message" placeholder="Tell us about your career goals and destination country..."></textarea>
+            </div>
+            <div class="form-group">
+              <label>Upload CV / Resume / Documents</label>
+              <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
+                <input type="file" id="fileInput" name="attachment" accept=".pdf,.doc,.docx" style="display:none" onchange="handleFile(this)">
+                <div id="uploadDefault">
+                  <div class="upload-icon">📄</div>
+                  <div class="upload-text"><strong>Click to upload</strong> or drag &amp; drop</div>
+                  <div class="upload-sub">PDF, DOC, DOCX &mdash; Max 5MB</div>
+                </div>
+                <div class="upload-preview" id="uploadPreview" style="display:none;">
+                  <span style="font-size:1.4rem;">✅</span>
+                  <span id="fileName" style="font-size:.85rem;font-weight:600;color:var(--text);word-break:break-all;"></span>
+                  <button type="button" class="upload-remove" onclick="removeFile(event)">✕ Remove</button>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn-submit" id="submitBtn">Send Message →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <div class="nav-logo-icon"><span>FCC</span></div>
+          <div class="nav-logo-text">
+            <strong>Formal Career Consultants</strong>
+            <small>We Are Formally With Your Career Dreams</small>
+          </div>
+        </div>
+        <p>Helping students and professionals build successful international careers since 2014. Trusted by 5,000+ clients across 25+ countries.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" aria-label="Facebook">f</a>
+          <a href="#" class="social-btn" aria-label="Instagram">in</a>
+          <a href="#" class="social-btn" aria-label="LinkedIn">Li</a>
+          <a href="#" class="social-btn" aria-label="YouTube">▶</a>
+          <a href="#" class="social-btn" aria-label="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About FCC</a></li>
+          <li><a href="#services">Our Services</a></li>
+          <li><a href="#countries">Countries</a></li>
+          <li><a href="#why">Why Choose Us</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Career Consultation</a></li>
+          <li><a href="#services">HRD Attestation</a></li>
+          <li><a href="#services">Placement Services</a></li>
+          <li><a href="#services">Visa Guidance</a></li>
+          <li><a href="#services">Certificate Verification</a></li>
+          <li><a href="#services">Exam Booking</a></li>
+          <li><a href="#services">Overseas Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="footer-contact-item">
+          <span>📞</span>
+          <a href="tel:+917892603093">+91 7892603093</a>
+        </div>
+        <div class="footer-contact-item">
+          <span>✉️</span>
+          <a href="mailto:hrmanager@formalgroupinhelath.com">hrmanager@formalgroupinhelath.com</a>
+        </div>
+        <div class="footer-contact-item">
+          <span>🌐</span>
+          <a href="http://www.formalconsultants.in" target="_blank">www.formalconsultants.in</a>
+        </div>
+        <div class="footer-contact-item" style="margin-top:16px;">
+          <a href="#contact" class="btn-primary" style="font-size:.8rem;padding:12px 20px;">Book Free Consultation</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Formal Career Consultants. All Rights Reserved.</span>
+      <span>Made with ❤️ for global careers</span>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING BUTTONS -->
+<div class="float-group">
+  <a href="#contact" class="float-btn float-consult">📅 Book Consultation</a>
+  <a href="https://wa.me/917892603093" target="_blank" class="float-btn float-wa" aria-label="WhatsApp">💬</a>
+  <button class="float-btn float-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">↑</button>
+</div>
+
+<script>
+  // Loader
+  window.addEventListener('load',()=>{
+    setTimeout(()=>document.getElementById('loader').classList.add('hidden'),1800);
+  });
+
+  // Navbar scroll
+  const navbar=document.getElementById('navbar');
+  window.addEventListener('scroll',()=>{
+    navbar.classList.toggle('scrolled',window.scrollY>40);
+    document.getElementById('scrollTop').classList.toggle('show',window.scrollY>400);
+  },{ passive:true });
+
+  // Hamburger
+  const ham=document.getElementById('hamburger');
+  const mobileMenu=document.getElementById('mobileMenu');
+  ham.addEventListener('click',()=>{
+    mobileMenu.classList.toggle('open');
+    const spans=ham.querySelectorAll('span');
+    if(mobileMenu.classList.contains('open')){
+      spans[0].style.transform='translateY(7px) rotate(45deg)';
+      spans[1].style.opacity='0';
+      spans[2].style.transform='translateY(-7px) rotate(-45deg)';
+    } else {
+      spans.forEach(s=>{s.style.transform='';s.style.opacity='';});
+    }
+  });
+  function closeMenu(){
+    mobileMenu.classList.remove('open');
+    const spans=ham.querySelectorAll('span');
+    spans.forEach(s=>{s.style.transform='';s.style.opacity='';});
+  }
+
+  // Theme toggle
+  const themeBtn=document.getElementById('themeToggle');
+  themeBtn.addEventListener('click',()=>{
+    const isDark=document.documentElement.getAttribute('data-theme')==='dark';
+    document.documentElement.setAttribute('data-theme',isDark?'light':'dark');
+    themeBtn.textContent=isDark?'🌙':'☀️';
+  });
+
+  // Intersection observer for reveals
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        if(e.target.classList.contains('stagger')) e.target.classList.add('visible');
+      }
+    });
+  },{threshold:0.12});
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger').forEach(el=>observer.observe(el));
+
+  // Counter animation
+  function animateCounter(el,target,suffix){
+    let start=0;
+    const dur=2000;
+    const step=dur/60;
+    const increment=target/60;
+    const timer=setInterval(()=>{
+      start+=increment;
+      if(start>=target){start=target;clearInterval(timer);}
+      el.textContent=Math.floor(start).toLocaleString();
+    },step);
+  }
+  const statsObserver=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.querySelectorAll('[data-target]').forEach(counter=>{
+          animateCounter(counter,parseInt(counter.dataset.target));
+        });
+        statsObserver.unobserve(e.target);
+      }
+    });
+  },{threshold:0.3});
+  statsObserver.observe(document.querySelector('.hero-stats'));
+
+  // FAQ accordion
+  function toggleFaq(btn){
+    const item=btn.parentElement;
+    const isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!isOpen) item.classList.add('open');
+  }
+
+  // File upload
+  function handleFile(input){
+    const file=input.files[0];
+    if(!file) return;
+    const maxMB=5;
+    if(file.size>maxMB*1024*1024){alert('File is too large. Please upload a file under 5MB.');input.value='';return;}
+    document.getElementById('uploadDefault').style.display='none';
+    document.getElementById('fileName').textContent=file.name;
+    document.getElementById('uploadPreview').style.display='flex';
+  }
+  function removeFile(e){
+    e.stopPropagation();
+    document.getElementById('fileInput').value='';
+    document.getElementById('uploadPreview').style.display='none';
+    document.getElementById('uploadDefault').style.display='block';
+  }
+  // Drag & drop
+  const ua=document.getElementById('uploadArea');
+  ua.addEventListener('dragover',e=>{e.preventDefault();ua.classList.add('dragover');});
+  ua.addEventListener('dragleave',()=>ua.classList.remove('dragover'));
+  ua.addEventListener('drop',e=>{
+    e.preventDefault();ua.classList.remove('dragover');
+    const file=e.dataTransfer.files[0];
+    if(!file) return;
+    const allowed=['application/pdf','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+    if(!allowed.includes(file.type)){alert('Please upload a PDF, DOC, or DOCX file.');return;}
+    const dt=new DataTransfer();dt.items.add(file);
+    document.getElementById('fileInput').files=dt.files;
+    handleFile(document.getElementById('fileInput'));
+  });
+
+  // Form submit — Web3Forms
+  document.getElementById('contactForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    const form=this;
+    const btn=document.getElementById('submitBtn');
+    const successEl=document.getElementById('formSuccess');
+    const errorEl=document.getElementById('formError');
+
+    successEl.classList.remove('show');
+    errorEl.classList.remove('show');
+
+    const originalBtnText=btn.textContent;
+    btn.disabled=true;
+    btn.textContent='Sending...';
+
+    const formData=new FormData(form);
+
+    fetch(form.action,{
+      method:'POST',
+      body:formData
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      if(data.success){
+        form.style.display='none';
+        successEl.classList.add('show');
+        form.reset();
+        removeFile({stopPropagation:function(){}});
+      } else {
+        errorEl.classList.add('show');
+      }
+    })
+    .catch(()=>{
+      errorEl.classList.add('show');
+    })
+    .finally(()=>{
+      btn.disabled=false;
+      btn.textContent=originalBtnText;
+    });
+  });
+</script>
 </body>
-</html
+</html>
