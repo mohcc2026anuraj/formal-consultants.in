@@ -1,1 +1,536 @@
+```css
+:root {
+  --navy: #0b2a4a;
+  --blue: #1469b8;
+  --sky: #eaf5ff;
+  --gold: #f2a900;
+  --text: #1d2939;
+  --muted: #667085;
+  --white: #ffffff;
+  --border: #dbe5ef;
+  --shadow: 0 12px 30px rgba(11, 42, 74, 0.10);
+}
 
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--white);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-header {
+  min-height: 78px;
+  width: 100%;
+  padding: 12px 6%;
+  background: rgba(255, 255, 255, 0.97);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--navy);
+}
+
+.brand img {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+}
+
+.brand strong,
+.brand small {
+  display: block;
+}
+
+.brand strong {
+  font-size: 1.15rem;
+}
+
+.brand small {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+nav a {
+  color: var(--navy);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--blue);
+}
+
+.menu-button {
+  display: none;
+  border: 0;
+  background: transparent;
+  color: var(--navy);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.hero {
+  min-height: 560px;
+  padding: 110px 8%;
+  display: flex;
+  align-items: center;
+  color: var(--white);
+  background:
+    linear-gradient(105deg, rgba(6, 31, 59, 0.94), rgba(20, 105, 184, 0.72)),
+    url("../images/hero.jpg") center/cover no-repeat,
+    var(--navy);
+}
+
+.hero-content {
+  max-width: 760px;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--blue);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.hero .eyebrow {
+  color: #c9e7ff;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin-top: 0;
+  line-height: 1.2;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: clamp(2.3rem, 5vw, 4.5rem);
+}
+
+h2 {
+  color: var(--navy);
+  font-size: clamp(1.8rem, 3.3vw, 2.7rem);
+}
+
+.hero-text {
+  max-width: 660px;
+  font-size: 1.15rem;
+}
+
+.hero-actions {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.btn {
+  padding: 13px 20px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 800;
+  transition: 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  color: var(--white);
+  background: var(--blue);
+}
+
+.hero .btn-primary {
+  color: var(--navy);
+  background: var(--gold);
+}
+
+.btn-outline {
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.75);
+}
+
+.section {
+  padding: 85px 8%;
+}
+
+.section-light {
+  background: var(--sky);
+}
+
+.section-heading {
+  max-width: 720px;
+  margin-bottom: 36px;
+}
+
+.section-heading.center {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+.section-heading p:last-child {
+  color: var(--muted);
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.info-box {
+  padding: 25px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--white);
+  box-shadow: var(--shadow);
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.info-box i {
+  color: var(--gold);
+  font-size: 1.8rem;
+}
+
+.info-box strong,
+.info-box span {
+  display: block;
+}
+
+.info-box span {
+  margin-top: 5px;
+  color: var(--muted);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.card {
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--white);
+  box-shadow: var(--shadow);
+  transition: 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-7px);
+}
+
+.card .icon {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  color: var(--blue);
+  background: var(--sky);
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+}
+
+.card h3 {
+  color: var(--navy);
+}
+
+.card p {
+  color: var(--muted);
+}
+
+.card a {
+  color: var(--blue);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.benefits p {
+  color: var(--muted);
+}
+
+.check-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 14px;
+}
+
+.check-list li {
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--white);
+  font-weight: 700;
+}
+
+.check-list i {
+  margin-right: 8px;
+  color: #1a9a59;
+}
+
+.contact-banner {
+  padding: 65px 8%;
+  color: var(--white);
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+}
+
+.contact-banner h2 {
+  margin-bottom: 12px;
+  color: var(--white);
+}
+
+.contact-banner .eyebrow {
+  color: #9bd4ff;
+}
+
+.contact-actions {
+  min-width: 310px;
+  display: grid;
+  gap: 12px;
+}
+
+.contact-actions a {
+  padding: 14px 18px;
+  border-radius: 10px;
+  color: var(--navy);
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+}
+
+.contact-actions i {
+  color: #1a9a59;
+  font-size: 1.65rem;
+}
+
+.contact-actions a:first-child i {
+  color: var(--blue);
+}
+
+.contact-actions small,
+.contact-actions span {
+  display: block;
+}
+
+.contact-actions small {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+footer {
+  padding: 55px 8% 20px;
+  color: #dbeafe;
+  background: #071a2f;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 40px;
+}
+
+footer h3,
+footer h4 {
+  color: var(--white);
+}
+
+footer a,
+footer p {
+  display: block;
+  margin: 8px 0;
+  color: #c5d7ea;
+}
+
+.footer-bottom {
+  margin-top: 35px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  text-align: center;
+}
+
+.floating-whatsapp {
+  width: 58px;
+  height: 58px;
+  right: 22px;
+  bottom: 22px;
+  border-radius: 50%;
+  color: var(--white);
+  background: #25d366;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+  position: fixed;
+  z-index: 999;
+  display: grid;
+  place-items: center;
+  font-size: 2rem;
+}
+
+@media (max-width: 1050px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  nav {
+    gap: 12px;
+  }
+
+  nav a {
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .site-header {
+    padding: 12px 5%;
+    flex-wrap: wrap;
+  }
+
+  .menu-button {
+    display: block;
+  }
+
+  nav {
+    width: 100%;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    flex-direction: column;
+    align-items: flex-start;
+    display: none;
+  }
+
+  nav.open {
+    display: flex;
+  }
+
+  .hero,
+  .section,
+  .contact-banner,
+  footer {
+    padding-right: 6%;
+    padding-left: 6%;
+  }
+
+  .hero {
+    min-height: 500px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .two-column,
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .contact-banner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .contact-actions {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .brand small {
+    display: none;
+  }
+}
+```
+
+## 3. Create `js/script.js`
+
+Create a folder named **`js`**, then create `script.js` inside it:
+
+```javascript
+const menuButton = document.getElementById("menuButton");
+const mainNav = document.getElementById("mainNav");
+
+if (menuButton && mainNav) {
+  menuButton.addEventListener("click", () => {
+    const isOpen = mainNav.classList.toggle("open");
+    menuButton.setAttribute("aria-expanded", isOpen);
+  });
+}
+
+document.getElementById("year").textContent = new Date().getFullYear();
+```
+
+## Important before publishing
+
+1. Your page uses `images/logo.png`. Upload your logo with exactly this name:
+   ```text
+   images/logo.png
+   ```
+
+2. Optional: upload a hero background image with exactly this name:
+   ```text
+   images/hero.jpg
+   ```
