@@ -1186,46 +1186,7 @@
     handleFile(document.getElementById('fileInput'));
   });
 
-  // Form submit — Web3Forms
-  document.getElementById('contactForm').addEventListener('submit',function(e){
-    e.preventDefault();
-    const form=this;
-    const btn=document.getElementById('submitBtn');
-    const successEl=document.getElementById('formSuccess');
-    const errorEl=document.getElementById('formError');
-
-    successEl.classList.remove('show');
-    errorEl.classList.remove('show');
-
-    const originalBtnText=btn.textContent;
-    btn.disabled=true;
-    btn.textContent='Sending...';
-
-    const formData=new FormData(form);
-
-    fetch(form.action,{
-      method:'POST',
-      body:formData
-    })
-    .then(res=>res.json())
-    .then(data=>{
-      if(data.success){
-        form.style.display='none';
-        successEl.classList.add('show');
-        form.reset();
-        removeFile({stopPropagation:function(){}});
-      } else {
-        errorEl.classList.add('show');
-      }
-    })
-    .catch(()=>{
-      errorEl.classList.add('show');
-    })
-    .finally(()=>{
-      btn.disabled=false;
-      btn.textContent=originalBtnText;
-    });
-  });
+  
 </script>
 </body>
 </html>
