@@ -1158,10 +1158,8 @@ document.getElementById('consultationForm').addEventListener('submit', function 
     `Service: ${service}\n` +
     `Message: ${message}`;
 
-  window.open(
-    `https://wa.me/918547081373?text=${encodeURIComponent(text)}`,
-    '_blank'
-  );
+window.location.href =
+  `https://wa.me/918547081373?text=${encodeURIComponent(text)}`;});
 });  
 </script>
 </body>
