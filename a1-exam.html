@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>German A1 Mock Exam | FCC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* VOICE: calm, exam-hall clear; encouraging for learners, exact for the teacher.
+   IDEA: the printed exam booklet + bubble answer sheet.
+   PICTURE: the working exam itself — question cards with large answer bubbles.
+   COLOUR and TYPE: ink-blue band, white paper, red-pencil accent; Archivo headings, Atkinson Hyperlegible body.
+   LAYOUT: one calm column for the exam; login = form beside the exam overview, stacked on phones. */
+:root{color-scheme:light dark;
+--bg:light-dark(#ffffff,#0e1620);--ink:light-dark(#14202c,#e7edf3);--mut:light-dark(#5a6774,#9aa8b5);
+--line:light-dark(#dde3ea,#24313e);--card:light-dark(#f3f6fa,#15212c);--brand:light-dark(#1d5bb8,#4f8ff0);
+--band:light-dark(#1d5bb8,#102a4f);--acc:#e2412b;--ok:light-dark(#17804a,#4cc285);--bad:light-dark(#c4362b,#ff7a6e);
+--sel:light-dark(#e3edfb,#18345c)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Atkinson Hyperlegible",system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:Archivo,system-ui,sans-serif;line-height:1.1;margin:0 0 .4em;text-wrap:balance}
+h1{font-size:clamp(30px,5vw,46px);font-weight:800}h2{font-size:24px;font-weight:800}h3{font-size:18px;font-weight:600}
+.top{background:var(--band);color:#fff;padding:12px max(4vw,16px);display:flex;gap:12px;align-items:center;flex-wrap:wrap;position:sticky;top:0;z-index:5}
+.top .brand{font:800 18px Archivo,sans-serif;display:flex;gap:10px;align-items:center;margin-right:auto}
+.top .brand i{display:inline-grid;place-items:center;width:40px;height:40px;flex:none;border-radius:50%;background:#fff;color:var(--band);font-style:normal;font-size:14px}
+.timer{font:600 18px Archivo,sans-serif;background:rgba(255,255,255,.14);padding:6px 12px;border-radius:8px;white-space:nowrap}
+.timer.low{background:var(--acc)}
+.chip{font-size:14px;opacity:.92;white-space:nowrap}
+.wrap{max-width:980px;margin:0 auto;padding:clamp(20px,4vw,48px) max(4vw,16px) 80px}
+.muted{color:var(--mut)}.small{font-size:14px}
+.btn{font:700 16px "Atkinson Hyperlegible",sans-serif;min-height:46px;padding:10px 20px;border-radius:10px;border:2px solid var(--brand);background:var(--brand);color:#fff;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--brand)}.btn.warn{background:var(--acc);border-color:var(--acc)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,.opt input:focus-visible+span{outline:3px solid var(--acc);outline-offset:2px}
+label.f{display:block;font-weight:700;margin:14px 0 6px}
+input[type=text],input[type=number],select,textarea{width:100%;font:16px "Atkinson Hyperlegible",sans-serif;padding:11px 12px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);min-height:46px}
+textarea{min-height:190px;resize:vertical;line-height:1.5}
+.grid2{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;align-items:start}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(18px,3vw,28px)}
+.sec{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:center;padding:14px 0;border-top:1px solid var(--line)}
+.sec:first-of-type{border-top:0}
+.sec b.n{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:2px solid var(--brand);color:var(--brand);font-family:Archivo}
+.note{border-left:4px solid var(--acc);padding:10px 14px;background:var(--card);border-radius:0 10px 10px 0;margin:16px 0;font-size:15px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px}
+.tab{flex:1 1 140px;text-align:left;border:2px solid var(--line);background:var(--bg);color:var(--ink);border-radius:12px;padding:10px 14px;cursor:pointer;font:700 16px Archivo,sans-serif;min-height:56px}
+.tab small{display:block;font:400 13px "Atkinson Hyperlegible",sans-serif;color:var(--mut)}
+.tab[aria-current=true]{border-color:var(--brand);background:var(--sel)}
+.part{margin:30px 0 10px}.part h2 small{font:400 15px "Atkinson Hyperlegible",sans-serif;color:var(--mut);display:block;margin-top:4px}
+.q{border:1px solid var(--line);border-radius:14px;padding:16px;margin:12px 0;background:var(--bg)}
+.q .qh{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap}
+.q .num{flex:none;font:800 15px Archivo;background:var(--ink);color:var(--bg);border-radius:8px;padding:3px 9px}
+.q .qt{flex:1 1 240px;font-weight:700}
+.opts{display:grid;gap:8px;margin-top:12px}
+.opts.rf{grid-template-columns:repeat(2,minmax(0,1fr))}
+.opt{display:block;cursor:pointer}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt span{display:flex;gap:12px;align-items:center;min-height:48px;padding:8px 12px;border:2px solid var(--line);border-radius:10px}
+.opt span::before{content:attr(data-k);flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;border:2px solid var(--mut);font:700 14px Archivo;color:var(--mut)}
+.opt input:checked+span{border-color:var(--brand);background:var(--sel)}
+.opt input:checked+span::before{background:var(--brand);border-color:var(--brand);color:#fff}
+.opt.right span{border-color:var(--ok)}.opt.wrong span{border-color:var(--bad)}
+.play{display:inline-flex;gap:8px;align-items:center;font:700 15px "Atkinson Hyperlegible";min-height:44px;padding:8px 14px;border-radius:999px;border:2px solid var(--brand);background:transparent;color:var(--brand);cursor:pointer}
+.play.on{background:var(--brand);color:#fff}
+.reading{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;white-space:pre-line;margin:10px 0}
+.sign{border:3px solid var(--ink);border-radius:6px;padding:12px 16px;font-weight:700;background:var(--bg);margin:10px 0;white-space:pre-line}
+.ads{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
+.ad{border:1px dashed var(--mut);border-radius:10px;padding:10px 12px;font-size:15px}
+.ad b{font-family:Archivo}
+.form-sheet{border:2px solid var(--ink);border-radius:10px;padding:16px;background:var(--bg)}
+.form-sheet .row{display:grid;grid-template-columns:150px minmax(0,1fr);gap:10px;align-items:center;margin:8px 0}
+.wc{font-size:14px;text-align:right;margin-top:6px}
+.navbar{display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;margin-top:30px;padding-top:20px;border-top:2px solid var(--line)}
+.score{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:20px 0}
+.score div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.score b{display:block;font:800 clamp(26px,4vw,36px) Archivo;white-space:nowrap}
+.score span{font-size:14px;color:var(--mut)}
+.big{font:800 clamp(48px,9vw,84px)/1 Archivo;margin:8px 0}
+.pass{color:var(--ok)}.fail{color:var(--bad)}
+.tr{font-size:14px;color:var(--mut);margin-top:8px;white-space:pre-line}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-weight:700;color:var(--mut);font-size:13px}
+td.n,th.n{text-align:right;white-space:nowrap}
+tbody tr{cursor:pointer}tbody tr:hover{background:var(--card)}
+.badge{font-size:13px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);white-space:nowrap}
+.badge.done{border-color:var(--ok);color:var(--ok)}.badge.prog{border-color:var(--acc);color:var(--acc)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:end;margin:14px 0}
+.toolbar>div{flex:1 1 200px}
+.modal{position:fixed;inset:0;background:rgba(8,14,22,.55);display:grid;place-items:center;padding:16px;z-index:20}
+.modal .box{background:var(--bg);border-radius:16px;padding:24px;max-width:440px;width:100%}
+.toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:15px;z-index:30}
+.save{font-size:13px;opacity:.85;white-space:nowrap}
+pre,.scroll{overflow-x:auto}
+@media (max-width:700px){.grid2{grid-template-columns:minmax(0,1fr)}.score{grid-template-columns:repeat(2,minmax(0,1fr))}.form-sheet .row{grid-template-columns:minmax(0,1fr);gap:4px}}
+@media (max-width:520px){.ads,.opts.rf{grid-template-columns:minmax(0,1fr)}body{font-size:16px}}
+@media (max-width:600px){table{font-size:13px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px}.stack td{display:flow-root;border:0;padding:3px 0;padding-inline-start:8em;text-align:start}.stack td::before{content:attr(data-l);float:inline-start;width:7.5em;margin-inline-start:-8em;white-space:normal;color:var(--mut)}.stack td:empty{display:none}}
+@media (prefers-reduced-motion:no-preference){.q{transition:border-color .2s}}
+</style>
+<script>new MutationObserver(()=>{for(const c of document.querySelectorAll('.stack td:not([data-l])')){let i=0,p=c;while(p=p.previousElementSibling)i+=p.colSpan;c.dataset.l=c.closest('table').rows[0].cells[i]?.textContent||''}}).observe(document,{childList:true,subtree:true})</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html" style="color:#fff;text-decoration:none"><i>FCC</i><span>Formal Career Consultants<small style="display:block;font:400 13px 'Atkinson Hyperlegible',sans-serif;opacity:.85">German A1 Mock Exam</small></span></a>
+  <span class="save" id="save"></span>
+  <span class="timer" id="timer" hidden></span>
+  <span class="chip" id="who"></span>
+  <button class="btn ghost" id="teachBtn" hidden style="color:#fff;border-color:#fff;min-height:40px;padding:6px 14px">Teacher view</button>
+</header>
+<main class="wrap" id="app"><p class="muted">Loading the exam…</p></main>
+<footer style="border-top:1px solid var(--line);padding:20px max(4vw,16px);text-align:center;font-size:14px;color:var(--mut)">Formal Career Consultants · <a href="index.html" style="color:var(--brand)">formalconsultants.in</a> · Help: +91 73066 12344 · <a href="https://wa.me/917306612344" style="color:var(--brand)">WhatsApp</a></footer>
+
+<script>
+{
+/* ====== SETTINGS — edit these two lines ====== */
+const WHATSAPP='917306612344'; // results are sent to this WhatsApp number
+const SHEET_URL='';      // paste your Google Apps Script web-app URL here
+const ACCESS_CODE='';    // optional code candidates must type, e.g. 'A1NOV'
+/* ============================================== */
+/* ---------- Exam content (Start Deutsch 1 format, original practice material) ---------- */
+const RF=['Richtig','Falsch'];
+const EXAM={
+hoeren:[
+ {part:1,title:'Hören Teil 1',sub:'Short conversations. Choose a, b or c. You can play each one twice.',plays:2,items:[
+  {id:'h1',q:'Wie viel kostet der Kaffee?',opts:['2,50 €','3,00 €','3,50 €'],a:0,lines:[['F','Entschuldigung, was kostet ein Kaffee?'],['M','Ein Kaffee kostet zwei Euro fünfzig. Mit Milch drei Euro.'],['F','Dann einen Kaffee ohne Milch, bitte.']]},
+  {id:'h2',q:'Wann fährt der Zug nach Hamburg heute ab?',opts:['um 14:20 Uhr','um 14:30 Uhr','um 14:10 Uhr'],a:1,lines:[['M','Wann fährt der Zug nach Hamburg?'],['F','Normalerweise um vierzehn Uhr zwanzig. Aber heute hat er zehn Minuten Verspätung.']]},
+  {id:'h3',q:'Wo ist die Toilette?',opts:['im Erdgeschoss','im ersten Stock','im zweiten Stock'],a:1,lines:[['F','Wo ist hier die Toilette, bitte?'],['M','Im ersten Stock, neben dem Aufzug. Im Erdgeschoss gibt es leider keine.']]},
+  {id:'h4',q:'Was kauft die Frau?',opts:['Äpfel und Bananen','Bananen und Tomaten','Äpfel und Tomaten'],a:2,lines:[['M','Guten Tag, was möchten Sie?'],['F','Ich hätte gern ein Kilo Äpfel und … nein, keine Bananen. Nur die Äpfel und zwei Tomaten, bitte.']]},
+  {id:'h5',q:'Welche Telefonnummer hat Herr Braun?',opts:['030 472195','030 427195','030 472159'],a:0,lines:[['F','Wie ist Ihre Telefonnummer, Herr Braun?'],['M','Null drei null, vier sieben zwei, eins neun fünf.'],['F','Vier sieben zwei, eins neun fünf?'],['M','Genau.']]},
+  {id:'h6',q:'Wohin fährt der Mann am Wochenende?',opts:['nach München','zu seinen Eltern','an die Ostsee'],a:2,lines:[['F','Fährst du am Wochenende zu deinen Eltern nach München?'],['M','Nein, diesmal nicht. Ich fahre mit Freunden an die Ostsee.']]}
+ ]},
+ {part:2,title:'Hören Teil 2',sub:'Announcements. Richtig or Falsch? You can play each one only once.',plays:1,items:[
+  {id:'h7',q:'Die Erdbeeren sind heute im Angebot.',opts:RF,a:0,lines:[['F','Liebe Kundinnen und Kunden, heute haben wir Erdbeeren im Angebot: fünfhundert Gramm für nur einen Euro neunundneunzig. Sie finden die Erdbeeren am Eingang.']]},
+  {id:'h8',q:'Der Zug nach Frankfurt fährt heute von Gleis 5.',opts:RF,a:1,lines:[['M','Achtung an Gleis fünf: Der ICE nach Frankfurt fährt heute nicht von Gleis fünf, sondern von Gleis acht.']]},
+  {id:'h9',q:'Die Fluggäste nach Wien sollen zu Ausgang B12 gehen.',opts:RF,a:0,lines:[['F','Fluggäste nach Wien: Ihr Flug L H zwei drei vier ist jetzt bereit zum Einsteigen. Bitte kommen Sie zu Ausgang B zwölf.']]},
+  {id:'h10',q:'Das Museum öffnet morgen um 9 Uhr.',opts:RF,a:1,lines:[['M','Liebe Besucher, das Museum schließt in fünfzehn Minuten. Bitte gehen Sie langsam zum Ausgang. Morgen sind wir ab zehn Uhr wieder für Sie da.']]}
+ ]},
+ {part:3,title:'Hören Teil 3',sub:'Phone messages. Choose a, b or c. You can play each one twice.',plays:2,items:[
+  {id:'h11',q:'Wann treffen sich Lisa und Tom?',opts:['um 19:00 Uhr','um 19:30 Uhr','um 20:00 Uhr'],a:1,lines:[['M','Hallo Lisa, hier ist Tom. Wir treffen uns heute nicht um sieben, sondern um halb acht vor dem Kino. Bis dann!']]},
+  {id:'h12',q:'Wann soll Frau Weber zum Arzt kommen?',opts:['am Dienstag','am Mittwoch','am Donnerstag'],a:2,lines:[['F','Guten Tag, Frau Weber, hier ist die Praxis Doktor Klein. Ihr Termin am Dienstag geht leider nicht. Können Sie am Donnerstag um neun Uhr kommen?']]},
+  {id:'h13',q:'Was soll die Mutter kaufen?',opts:['Brot und Milch','Brot und Käse','Käse und Milch'],a:1,lines:[['M','Hallo Mama, ich bin es, Paul. Kannst du bitte Brot und Käse mitbringen? Milch haben wir noch. Danke!']]},
+  {id:'h14',q:'Was soll Herr Schmidt machen?',opts:['eine E-Mail schreiben','Frau Meier zurückrufen','zur Firma kommen'],a:1,lines:[['F','Hallo Herr Schmidt, hier spricht Anna Meier von der Firma Teko. Bitte rufen Sie mich zurück. Meine Nummer ist null eins sieben drei, zwei acht fünf, sechs vier.']]},
+  {id:'h15',q:'Warum kommt Mehmet nicht zum Kurs?',opts:['Er muss arbeiten.','Er ist krank.','Er hat keine Hausaufgaben.'],a:1,lines:[['M','Hi Sara, hier ist Mehmet. Ich bin krank und kann heute nicht zum Deutschkurs kommen. Kannst du mir bitte die Hausaufgaben schicken?']]}
+ ]}],
+lesen:[
+ {part:1,title:'Lesen Teil 1',sub:'Read the two texts. Richtig or Falsch?',groups:[
+  {text:'Liebe Julia,\nwie geht es dir? Ich bin jetzt seit zwei Wochen in Berlin. Meine Wohnung ist klein, aber sehr schön und hell. Ich arbeite in einem Hotel am Alexanderplatz. Ich fange jeden Tag um 6 Uhr an – das ist früh! Am Samstag habe ich frei. Hast du Zeit? Dann können wir zusammen ins Kino gehen.\nViele Grüße\nNina',items:[
+   {id:'l1',q:'Nina wohnt seit zwei Wochen in Berlin.',opts:RF,a:0},
+   {id:'l2',q:'Ninas Wohnung ist groß.',opts:RF,a:1},
+   {id:'l3',q:'Nina hat am Samstag frei.',opts:RF,a:0}]},
+  {text:'Hallo Herr Koch,\nmorgen ist unsere Sitzung nicht im Raum 104, sondern im Raum 210 im zweiten Stock. Wir beginnen um 10 Uhr. Bitte bringen Sie Ihren Laptop mit.\nMit freundlichen Grüßen\nPetra Lang',items:[
+   {id:'l4',q:'Die Sitzung ist im Raum 104.',opts:RF,a:1},
+   {id:'l5',q:'Herr Koch soll seinen Laptop mitbringen.',opts:RF,a:0}]}]},
+ {part:2,title:'Lesen Teil 2',sub:'Read the situation and the two adverts. Which one fits: a or b?',ads:true,groups:[{items:[
+  {id:'l6',q:'Sie möchten am Sonntag schwimmen gehen.',ads:['<b>Hallenbad Mitte</b><br>Mo–Sa 7–21 Uhr<br>Sonntag geschlossen','<b>Freizeitbad Aqua</b><br>täglich 9–22 Uhr<br>auch am Wochenende'],a:1},
+  {id:'l7',q:'Sie suchen eine Wohnung für eine Familie mit zwei Kindern.',ads:['<b>1-Zimmer-Apartment</b><br>30 m², ideal für Studenten','<b>4-Zimmer-Wohnung</b><br>95 m², Balkon, Spielplatz im Hof'],a:1},
+  {id:'l8',q:'Sie möchten am Abend Deutsch lernen.',ads:['<b>Sprachschule Lingua</b><br>Deutsch A1, Mo + Mi 18:30–20:00 Uhr','<b>Volkshochschule</b><br>Deutsch A1 Intensiv, Mo–Fr 9–12 Uhr'],a:0},
+  {id:'l9',q:'Sie möchten ein gebrauchtes Fahrrad kaufen.',ads:['<b>Rad &amp; Tat Werkstatt</b><br>Reparaturen in 24 Stunden','<b>Verkaufe Damenrad</b><br>3 Jahre alt, sehr guter Zustand, 80 €'],a:1},
+  {id:'l10',q:'Sie möchten mit dem Bus von Köln nach Berlin fahren.',ads:['<b>FernBus</b><br>Köln – Berlin ab 19,99 €, täglich 6 Fahrten','<b>Bahn-Spezial</b><br>Köln – Berlin mit dem ICE ab 29,90 €'],a:0}]}]},
+ {part:3,title:'Lesen Teil 3',sub:'Read the signs and notices. Richtig or Falsch?',groups:[{items:[
+  {id:'l11',sign:'Praxis Dr. Yilmaz\nSprechzeiten: Mo, Di, Do 8–12 und 15–18 Uhr\nMittwoch und Freitag nur vormittags',q:'Sie können am Freitagnachmittag zum Arzt gehen.',opts:RF,a:1},
+  {id:'l12',sign:'Wir suchen Verstärkung!\nKassierer/in in Teilzeit gesucht.\nBitte an der Information melden.',q:'Der Supermarkt sucht eine neue Mitarbeiterin oder einen neuen Mitarbeiter.',opts:RF,a:0},
+  {id:'l13',sign:'Stadtbibliothek\nBitte nicht essen und trinken.\nHandys bitte leise stellen.',q:'In der Bibliothek dürfen Sie Kaffee trinken.',opts:RF,a:1},
+  {id:'l14',sign:'Heute Ruhetag.\nAb morgen sind wir wieder ab 11:30 Uhr für Sie da.',q:'Das Restaurant ist heute geschlossen.',opts:RF,a:0},
+  {id:'l15',sign:'Sekretariat\nBitte klingeln und warten.\nRaum 12, erster Stock',q:'Das Sekretariat ist im Erdgeschoss.',opts:RF,a:1}]}]}],
+s1text:'Ihre Freundin Ana Costa kommt aus Portugal. Sie möchte einen Deutschkurs an der Sprachschule „Deutsch Plus“ machen. Sie ist 27 Jahre alt und wohnt jetzt in Bonn, Rheinstraße 14. Sie spricht Portugiesisch und Englisch. Sie möchte am Abend lernen und bezahlt mit Kreditkarte.\nFüllen Sie das Anmeldeformular für Ana aus.',
+s1:[{id:'s1a',label:'Alter',ok:v=>/\b27\b/.test(v)},{id:'s1b',label:'Wohnort',ok:v=>v.includes('bonn')},{id:'s1c',label:'Muttersprache',ok:v=>v.includes('portugiesisch')},{id:'s1d',label:'Kurszeit',select:['Vormittag','Nachmittag','Abend'],ok:v=>v==='abend'},{id:'s1e',label:'Zahlungsart',ok:v=>v.includes('kredit')}],
+s1ans:{s1a:'27',s1b:'Bonn',s1c:'Portugiesisch',s1d:'Abend',s1e:'Kreditkarte'},
+s2text:'Sie haben am Freitag Geburtstag und machen eine Party. Schreiben Sie Ihrem Freund Jonas eine kurze Nachricht.\n• Warum schreiben Sie?\n• Wann und wo ist die Party?\n• Was soll Jonas mitbringen?\nSchreiben Sie zu jedem Punkt ein bis zwei Sätze (circa 30 Wörter). Vergessen Sie Anrede und Gruß nicht.'
+};
+const MINUTES=65, MAX={hoeren:15,lesen:15,s1:5,s2:10}, TOTAL=45, PASS=0.6;
+const allItems=k=>EXAM[k].flatMap(p=>p.items||p.groups.flatMap(g=>g.items));
+
+/* ---------- State ---------- */
+const S={view:'loading',db:null,user:null,uid:null,canEdit:false,canSave:false,att:null,ans:{},plays:{},sec:'hoeren',attempts:[],code:'',sel:null,tts:null};
+const $=id=>document.getElementById(id), app=$('app');
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm=v=>String(v||'').toLowerCase().trim();
+const LS='a1mock-standalone';
+const lsGet=()=>{try{return JSON.parse(localStorage.getItem(LS)||'null')}catch(e){return null}};
+const lsSet=v=>{try{localStorage.setItem(LS,JSON.stringify(v))}catch(e){}};
+function toast(m){const t=document.createElement('div');t.className='toast';t.textContent=m;document.body.append(t);setTimeout(()=>t.remove(),2600)}
+function ask(msg,ok='OK',warn){return new Promise(res=>{const m=document.createElement('div');m.className='modal';m.innerHTML=`<div class="box" role="dialog" aria-modal="true"><p></p><div class="toolbar" style="justify-content:flex-end"><button class="btn ghost" data-x="0">Cancel</button><button class="btn ${warn?'warn':''}" data-x="1">${esc(ok)}</button></div></div>`;m.querySelector('p').textContent=msg;m.onclick=e=>{const x=e.target.dataset.x;if(x!==undefined){m.remove();res(x==='1')}};document.body.append(m);m.querySelector('[data-x="1"]').focus()})}
+
+/* ---------- Scoring ---------- */
+function score(ans){
+ const c=k=>allItems(k).filter(i=>ans[i.id]===i.a).length;
+ const s1=EXAM.s1.filter(f=>f.ok(norm(ans[f.id]))).length;
+ return {hoeren:c('hoeren'),lesen:c('lesen'),s1};
+}
+const words=t=>(String(t||'').trim().match(/\S+/g)||[]).length;
+
+/* ---------- Saving ---------- */
+let saveTimer=null,saving=false,dirty=false;
+function setSave(t){$('save').textContent=t}
+function queueSave(){dirty=true;setSave('Saving…');clearTimeout(saveTimer);saveTimer=setTimeout(flush,1200)}
+async function flush(){
+ if(saving){saveTimer=setTimeout(flush,600);return}
+ if(!dirty)return; dirty=false;
+ const patch={answers:{...S.ans},plays:{...S.plays},updatedAt:Date.now()};
+ Object.assign(S.att,patch);
+ lsSet(S.att);setSave('Saved on this device');return;
+ saving=true;
+ try{await S.db.doc('attempts/'+S.uid).update(patch);setSave('All answers saved')}
+ catch(e){setSave('Not saved — check connection');dirty=true;saveTimer=setTimeout(flush,4000)}
+ saving=false;
+}
+
+/* ---------- Audio ---------- */
+let speaking=null;
+function deVoice(){const vs=speechSynthesis.getVoices();return vs.filter(v=>/^de/i.test(v.lang))}
+async function playItem(it,btn,max){
+ if(speaking)return;
+ const used=S.plays[it.id]||0; if(used>=max)return;
+ S.plays[it.id]=used+1; queueSave(); speaking=it.id; btn.classList.add('on'); btn.textContent='▶ Playing…';
+ try{
+  if(S.tts){await S.tts.speak(it.lines.map(([s,t])=>({text:t,voice:s==='M'?'rounded':'airy',language:'de'})))}
+  else if('speechSynthesis' in window){
+   const vs=deVoice();
+   for(const [s,t] of it.lines){await new Promise(r=>{const u=new SpeechSynthesisUtterance(t);u.lang='de-DE';u.rate=.9;if(vs.length)u.voice=vs[s==='M'&&vs.length>1?1:0];u.pitch=s==='M'?.8:1.15;u.onend=u.onerror=r;speechSynthesis.speak(u)});await new Promise(r=>setTimeout(r,350))}
+  }
+ }catch(e){}
+ speaking=null; setPlayBtn(btn,it.id,max);
+}
+function setPlayBtn(btn,id,max){const left=max-(S.plays[id]||0);btn.classList.remove('on');btn.disabled=left<=0;btn.textContent=left>0?`▶ Play audio (${left} left)`:'Audio used'}
+const audioOK=()=>!!S.tts||('speechSynthesis' in window);
+
+/* ---------- Views ---------- */
+function header(){
+ $('who').textContent=S.att?.name?`${S.att.name} · ${S.att.cid}`:'';
+ $('teachBtn').hidden=!S.canEdit; $('teachBtn').textContent=S.view==='teacher'?'Back to exam':'Teacher view';
+ $('timer').hidden=S.view!=='exam'; if(S.view!=='exam')setSave(S.view==='teacher'?'':$('save').textContent);
+}
+function render(){header();({loading:()=>{},login:vLogin,exam:vExam,result:vResult,teacher:vTeacher})[S.view]();window.scrollTo(0,0)}
+
+function vLogin(){
+ const needCode=!!S.code;
+ app.innerHTML=`<div class="grid2">
+ <section class="panel"><h1>Candidate login</h1>
+  <p class="muted">Enter your details to start the German A1 mock exam. Your answers save as you go, so you can come back if the page closes.</p>
+  <form id="lf" autocomplete="on">
+   <label class="f" for="nm">Full name</label><input type="text" id="nm" required maxlength="80" autocomplete="name">
+   <label class="f" for="cid">Candidate ID</label><input type="text" id="cid" required maxlength="40" placeholder="e.g. A1-2026-014">
+   ${needCode?`<label class="f" for="code">Exam access code</label><input type="text" id="code" required maxlength="40" autocomplete="off"><div class="small muted" style="margin-top:4px">Your teacher gives you this code.</div>`:''}
+   <p id="lerr" class="small" style="color:var(--bad)" role="alert"></p>
+   <button class="btn" style="width:100%">Start exam · ${MINUTES} minutes</button>
+  </form>
+  
+ </section>
+ <section><h2>What's in the exam</h2>
+  <div class="sec"><b class="n">1</b><div><b>Hören · Listening</b><div class="small muted">3 parts · 15 questions · audio plays on your device</div></div><span class="small">15 pts</span></div>
+  <div class="sec"><b class="n">2</b><div><b>Lesen · Reading</b><div class="small muted">3 parts · 15 questions</div></div><span class="small">15 pts</span></div>
+  <div class="sec"><b class="n">3</b><div><b>Schreiben · Writing</b><div class="small muted">Fill in a form · write a short message</div></div><span class="small">15 pts</span></div>
+  <div class="note">One timer for all three sections: ${MINUTES} minutes. When time runs out, the exam submits itself. Use headphones for the listening part. Pass guide: ${Math.round(PASS*100)}%.</div>
+  <p class="small muted">Speaking (Sprechen) isn't included here; do that with your teacher.</p>
+ </section></div>`;
+ $('lf').onsubmit=async e=>{e.preventDefault();
+  const name=$('nm').value.trim(),cid=$('cid').value.trim(),err=$('lerr');
+  if(!name||!cid){err.textContent='Please enter your name and candidate ID.';return}
+  if(needCode&&norm($('code').value)!==norm(S.code)){err.textContent='That access code is not right. Ask your teacher.';return}
+  S.att={name,cid,status:'in_progress',startedAt:Date.now(),updatedAt:Date.now(),answers:{},plays:{}};S.ans={};S.plays={};
+  lsSet(S.att);
+  S.view='exam';S.sec='hoeren';render();
+ };
+}
+
+function optHTML(it,review){
+ const keys=it.opts.length===2&&it.opts[0]==='Richtig'?['R','F']:['a','b','c'];
+ return `<div class="opts ${keys[0]==='R'?'rf':''}">${it.opts.map((o,i)=>{
+  const cls=review?(i===it.a?'right':(S.ans[it.id]===i?'wrong':'')):'';
+  return `<label class="opt ${cls}"><input type="radio" name="${it.id}" value="${i}" ${S.ans[it.id]===i?'checked':''} ${review?'disabled':''}><span data-k="${keys[i]}">${esc(o)}</span></label>`}).join('')}</div>`;
+}
+function adsOpts(it,review){
+ return `<div class="ads">${it.ads.map((a,i)=>`<div class="ad">${a}</div>`).join('')}</div>`+optHTML({...it,opts:['Anzeige a','Anzeige b']},review);
+}
+function qCard(it,n,extra='',review){
+ return `<div class="q" id="q-${it.id}"><div class="qh"><span class="num">${n}</span><div class="qt">${esc(it.q)}</div>${extra}</div>${it.sign?`<div class="sign">${esc(it.sign)}</div>`:''}${it.ads?adsOpts(it,review):optHTML(it,review)}${review&&it.lines?`<div class="tr"><b>Transcript:</b> ${esc(it.lines.map(l=>l[1]).join(' / '))}</div>`:''}</div>`;
+}
+function secHoeren(review){
+ let n=0;
+ return (audioOK()||review?'':`<div class="note">Audio can't play on this device. Try the exam on a laptop browser, or ask your teacher.</div>`)+EXAM.hoeren.map(p=>`<div class="part"><h2>${p.title}<small>${p.sub}</small></h2></div>`+p.items.map(it=>{n++;return qCard(it,n,review?'':`<button type="button" class="play" data-play="${it.id}" data-max="${p.plays}"></button>`,review)}).join('')).join('');
+}
+function secLesen(review){
+ let n=0;
+ return EXAM.lesen.map(p=>`<div class="part"><h2>${p.title}<small>${p.sub}</small></h2></div>`+p.groups.map(g=>(g.text?`<div class="reading">${esc(g.text)}</div>`:'')+g.items.map(it=>{n++;return qCard(it,n,'',review)}).join('')).join('')).join('');
+}
+function secSchreiben(review){
+ const t2=S.ans.s2||'';
+ return `<div class="part"><h2>Schreiben Teil 1<small>Read the text and fill in the form. 5 points.</small></h2></div>
+ <div class="reading">${esc(EXAM.s1text)}</div>
+ <div class="form-sheet"><h3>Sprachschule Deutsch Plus · Anmeldung</h3>
+  <div class="row"><b>Name</b><span>Ana Costa</span></div>
+  ${EXAM.s1.map((f,i)=>{const v=S.ans[f.id]||'';const ok=review?(f.ok(norm(v))?'✓':'✗ '+EXAM.s1ans[f.id]):'';
+   return `<div class="row"><label for="${f.id}"><b>${i+1}. ${f.label}</b></label><div>${f.select?`<select id="${f.id}" data-txt ${review?'disabled':''}><option value="">— bitte wählen —</option>${f.select.map(o=>`<option ${v===o?'selected':''}>${o}</option>`).join('')}</select>`:`<input type="text" id="${f.id}" data-txt value="${esc(v)}" maxlength="60" ${review?'disabled':''}>`}${review?`<div class="small" style="color:${ok==='✓'?'var(--ok)':'var(--bad)'}">${esc(ok)}</div>`:''}</div></div>`}).join('')}
+ </div>
+ <div class="part"><h2>Schreiben Teil 2<small>Write a short message. 10 points, marked by your teacher.</small></h2></div>
+ <div class="reading">${esc(EXAM.s2text)}</div>
+ <label class="f" for="s2">Ihre Nachricht</label>
+ <textarea id="s2" data-txt ${review?'disabled':''} placeholder="Lieber Jonas, …">${esc(t2)}</textarea>
+ <div class="wc muted" id="wc">${words(t2)} words · aim for about 30</div>`;
+}
+const SECS=[['hoeren','Hören','Listening'],['lesen','Lesen','Reading'],['schreiben','Schreiben','Writing']];
+function counts(){
+ return {hoeren:allItems('hoeren').filter(i=>S.ans[i.id]!==undefined).length+'/15',lesen:allItems('lesen').filter(i=>S.ans[i.id]!==undefined).length+'/15',
+  schreiben:(EXAM.s1.filter(f=>(S.ans[f.id]||'').trim()).length+(words(S.ans.s2)>0?1:0))+'/6'};
+}
+function updTabs(){const c=counts();for(const [k] of SECS){const el=document.querySelector(`[data-sec="${k}"] small`);if(el)el.textContent=el.dataset.l+' · '+c[k]+' done'}}
+
+function vExam(){
+ const c=counts(), i=SECS.findIndex(s=>s[0]===S.sec);
+ app.innerHTML=`<nav class="tabs" aria-label="Sections">${SECS.map(([k,de,en])=>`<button class="tab" data-sec="${k}" aria-current="${k===S.sec}">${de}<small data-l="${en}">${en} · ${c[k]} done</small></button>`).join('')}</nav>
+ <div id="sec">${{hoeren:secHoeren,lesen:secLesen,schreiben:secSchreiben}[S.sec](false)}</div>
+ <div class="navbar">${i>0?`<button class="btn ghost" data-go="${SECS[i-1][0]}">← ${SECS[i-1][1]}</button>`:'<span></span>'}
+ ${i<2?`<button class="btn" data-go="${SECS[i+1][0]}">Next: ${SECS[i+1][1]} →</button>`:`<button class="btn warn" id="submit">Submit exam</button>`}</div>`;
+ app.querySelectorAll('[data-play]').forEach(b=>{const it=allItems('hoeren').find(x=>x.id===b.dataset.play);const max=+b.dataset.max;setPlayBtn(b,it.id,max);if(!audioOK())b.disabled=true;b.onclick=()=>playItem(it,b,max)});
+ app.querySelectorAll('[data-sec],[data-go]').forEach(b=>b.onclick=()=>{S.sec=b.dataset.sec||b.dataset.go;vExam();window.scrollTo(0,0)});
+ app.querySelectorAll('input[type=radio]').forEach(r=>r.onchange=()=>{S.ans[r.name]=+r.value;queueSave();updTabs()});
+ app.querySelectorAll('[data-txt]').forEach(t=>t.oninput=t.onchange=()=>{S.ans[t.id]=t.value;if(t.id==='s2')$('wc').textContent=words(t.value)+' words · aim for about 30';queueSave();updTabs()});
+ const sb=$('submit'); if(sb)sb.onclick=async()=>{
+  const c=counts(); const miss=30-(+c.hoeren.split('/')[0])-(+c.lesen.split('/')[0]);
+  if(await ask(miss>0?`You have ${miss} unanswered question${miss>1?'s':''}. Submit anyway? You can't change answers afterwards.`:'Submit your exam? You can\'t change answers afterwards.','Submit','warn'))submit();
+ };
+}
+let submitting=false;
+async function sendSheet(){
+ if(!SHEET_URL)return false;
+ const a=S.att,sc=a.scores||score(S.ans);
+ const body={name:a.name,cid:a.cid,startedAt:new Date(a.startedAt).toISOString(),submittedAt:new Date(a.submittedAt).toISOString(),autoSubmitted:!!a.autoSubmitted,
+  hoeren:sc.hoeren,lesen:sc.lesen,schreiben1:sc.s1,autoTotal:sc.hoeren+sc.lesen+sc.s1,
+  form:EXAM.s1.map(f=>f.label+': '+(S.ans[f.id]||'-')).join('; '),message:S.ans.s2||'',words:words(S.ans.s2),
+  answers:allItems('hoeren').concat(allItems('lesen')).map(i=>i.id+'='+(S.ans[i.id]===undefined?'-':(i.ads?'ab':i.opts.length===2?'RF':'abc')[S.ans[i.id]])).join(' ')};
+ try{await fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body)});return true}catch(e){return false}
+}
+async function submit(auto){
+ if(submitting)return; submitting=true; clearTimeout(saveTimer);
+ const sc=score(S.ans);
+ const patch={answers:{...S.ans},plays:{...S.plays},status:'submitted',submittedAt:Date.now(),updatedAt:Date.now(),scores:sc,autoSubmitted:!!auto};
+ Object.assign(S.att,patch);
+ lsSet(S.att); S.att.sent=await sendSheet(); lsSet(S.att); setSave('');
+ S.view='result';render(); if(auto)toast('Time is up — your exam was submitted.');
+}
+
+function summaryText(){
+ const a=S.att,sc=a.scores||score(S.ans),t=a.teacher;
+ return `A1 Mock Exam result\nName: ${a.name}\nCandidate ID: ${a.cid}\nSubmitted: ${new Date(a.submittedAt||Date.now()).toLocaleString()}\nHören: ${sc.hoeren}/15\nLesen: ${sc.lesen}/15\nSchreiben Teil 1: ${sc.s1}/5\nSchreiben Teil 2: ${t?.s2!=null?t.s2+'/10':'to be marked'}\nAnswers: ${allItems('hoeren').concat(allItems('lesen')).map(i=>i.id+'='+(S.ans[i.id]??'-')).join(',')}\nForm: ${EXAM.s1.map(f=>f.label+': '+(S.ans[f.id]||'-')).join('; ')}\nMessage:\n${S.ans.s2||'-'}`;
+}
+function vResult(){
+ const a=S.att,sc=a.scores||score(S.ans),t=a.teacher||{};
+ const auto=sc.hoeren+sc.lesen+sc.s1, graded=t.s2!=null, tot=auto+(graded?+t.s2:0);
+ const pct=Math.round(tot/(graded?TOTAL:TOTAL-MAX.s2)*100);
+ app.innerHTML=`<h1>Your result</h1>
+ <p class="muted">${esc(a.name)} · ${esc(a.cid)} · submitted ${new Date(a.submittedAt).toLocaleString()}</p>
+ <div class="big ${pct>=PASS*100?'pass':'fail'}">${pct}%</div>
+ <p>${graded?`Final score ${tot} of ${TOTAL} points.`:`${auto} of ${TOTAL-MAX.s2} points so far. Your teacher still has to mark your message (10 points).`} ${pct>=PASS*100?'Well done — that is above the pass guide.':'Keep practising — the pass guide is '+Math.round(PASS*100)+'%.'}</p>
+ <div class="score"><div><span>Hören</span><b>${sc.hoeren}/15</b></div><div><span>Lesen</span><b>${sc.lesen}/15</b></div><div><span>Schreiben 1</span><b>${sc.s1}/5</b></div><div><span>Schreiben 2</span><b>${graded?t.s2+'/10':'—'}</b></div></div>
+ ${t.note?`<div class="note"><b>Teacher's comment:</b> <span id="tn"></span></div>`:''}
+ <div class="toolbar"><a class="btn" id="wa" target="_blank" rel="noopener" style="background:#1f8f4e;border-color:#1f8f4e;text-decoration:none;display:inline-flex;align-items:center">Send result to FCC on WhatsApp</a><button class="btn ghost" id="copy">Copy result summary</button>${a.sent?'<span class="small muted">✓ Also saved to your teacher\'s sheet.</span>':''}</div><div class="note" style="margin-top:0"><b>Important:</b> tap the green button and press send in WhatsApp so FCC receives your result.</div>
+ <h2 style="margin-top:36px">Review your answers</h2>
+ <p class="muted small">Green shows the correct answer; red shows your answer where it was wrong.</p>
+ <h2 style="margin-top:20px">Hören</h2>${secHoeren(true)}<h2 style="margin-top:30px">Lesen</h2>${secLesen(true)}<h2 style="margin-top:30px">Schreiben</h2>${secSchreiben(true)}`;
+ if(t.note)$('tn').textContent=t.note;
+ $('wa').href='https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(summaryText());
+ $('copy').onclick=()=>copyText(summaryText());
+ const rs=$('resend');if(rs)rs.onclick=async()=>{rs.disabled=true;S.att.sent=await sendSheet();lsSet(S.att);vResult();toast(S.att.sent?'Sent':'Still not sent — check your internet')};
+}
+async function copyText(txt){try{await navigator.clipboard.writeText(txt);toast('Copied')}catch(e){const m=document.createElement('div');m.className='modal';m.innerHTML='<div class="box"><p>Select all and copy:</p><textarea style="min-height:220px"></textarea><div class="toolbar" style="justify-content:flex-end"><button class="btn">Close</button></div></div>';m.querySelector('textarea').value=txt;m.querySelector('button').onclick=()=>m.remove();document.body.append(m);m.querySelector('textarea').select()}}
+
+/* ---------- Teacher ---------- */
+function vTeacher(){
+ const rows=[...S.attempts].sort((a,b)=>(b.d.updatedAt||0)-(a.d.updatedAt||0));
+ const done=rows.filter(r=>r.d.status==='submitted');
+ const avg=done.length?Math.round(done.reduce((s,r)=>s+tot(r.d).pct,0)/done.length):0;
+ app.innerHTML=`<h1>Teacher dashboard</h1>
+ <p class="muted">Every candidate's attempt appears here live. Tap a row to see their answers and mark the message.</p>
+ <div class="score"><div><span>Candidates</span><b>${rows.length}</b></div><div><span>Submitted</span><b>${done.length}</b></div><div><span>In progress</span><b>${rows.length-done.length}</b></div><div><span>Average</span><b>${done.length?avg+'%':'—'}</b></div></div>
+ <div class="panel"><div class="toolbar"><div><label class="f" for="ac" style="margin-top:0">Exam access code</label><input type="text" id="ac" value="${esc(S.code)}" placeholder="Leave empty for no code" maxlength="40"></div><button class="btn" id="saveCode">Save code</button><button class="btn ghost" id="csv">Copy all results (CSV)</button></div>
+ <p class="small muted" style="margin:0">Candidates must type this code to start. Changing it doesn't affect anyone already in the exam.</p></div>
+ ${rows.length?`<div style="margin-top:22px"><table class="stack"><thead><tr><th>Candidate</th><th>ID</th><th>Status</th><th class="n">Hören</th><th class="n">Lesen</th><th class="n">Schreiben</th><th class="n">Total</th></tr></thead><tbody>
+ ${rows.map(r=>{const d=r.d,sc=d.scores||score(d.answers||{}),t=tot(d);return `<tr data-id="${esc(r.id)}"><td><b>${esc(d.name)}</b></td><td>${esc(d.cid)}</td><td>${d.status==='submitted'?`<span class="badge done">Submitted</span>`:`<span class="badge prog">In progress</span>`}</td><td class="n">${sc.hoeren}/15</td><td class="n">${sc.lesen}/15</td><td class="n">${sc.s1}+${d.teacher?.s2??'?'}/15</td><td class="n"><b>${d.status==='submitted'?t.pct+'%':'—'}</b></td></tr>`}).join('')}
+ </tbody></table></div>`:`<div class="note">No attempts yet. Share this page with your candidates as <b>Contributor</b> (so their answers can save), then their results show up here.</div>`}
+ <div id="detail"></div>`;
+ $('saveCode').onclick=async()=>{try{await S.db.doc('config/exam').set({code:$('ac').value.trim()});S.code=$('ac').value.trim();toast('Access code saved')}catch(e){toast('Could not save the code')}};
+ $('csv').onclick=()=>copyText(['Name,Candidate ID,Status,Hören,Lesen,Schreiben 1,Schreiben 2,Total %,Submitted'].concat(rows.map(r=>{const d=r.d,sc=d.scores||score(d.answers||{});return [d.name,d.cid,d.status,sc.hoeren,sc.lesen,sc.s1,d.teacher?.s2??'',d.status==='submitted'?tot(d).pct:'',d.submittedAt?new Date(d.submittedAt).toISOString():''].map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')})).join('\n'));
+ app.querySelectorAll('tbody tr').forEach(tr=>tr.onclick=()=>{S.sel=tr.dataset.id;detail(true)});
+ if(S.sel)detail();
+}
+function tot(d){const sc=d.scores||score(d.answers||{});const g=d.teacher?.s2!=null;const p=sc.hoeren+sc.lesen+sc.s1+(g?+d.teacher.s2:0);return {pts:p,pct:Math.round(p/(g?TOTAL:TOTAL-MAX.s2)*100)}}
+function detail(scroll){
+ const r=S.attempts.find(x=>x.id===S.sel),el=$('detail'); if(!r||!el){if(el)el.innerHTML='';return}
+ const d=r.d,ans=d.answers||{},sc=d.scores||score(ans);
+ const line=k=>allItems(k).map((it,i)=>{const v=ans[it.id];const ok=v===it.a;return `<span title="${esc(it.q)}" style="display:inline-block;min-width:44px;margin:2px;padding:2px 6px;border-radius:6px;border:1px solid ${v===undefined?'var(--line)':ok?'var(--ok)':'var(--bad)'}">${i+1} ${v===undefined?'–':ok?'✓':'✗'}</span>`}).join('');
+ el.innerHTML=`<div class="panel" style="margin-top:24px"><h2>${esc(d.name)} <span class="muted small">· ${esc(d.cid)}</span></h2>
+ <p class="small muted">Started ${new Date(d.startedAt).toLocaleString()}${d.submittedAt?' · submitted '+new Date(d.submittedAt).toLocaleString()+(d.autoSubmitted?' (time ran out)':''):' · still working'}</p>
+ <h3>Hören ${sc.hoeren}/15</h3><div>${line('hoeren')}</div><h3 style="margin-top:14px">Lesen ${sc.lesen}/15</h3><div>${line('lesen')}</div>
+ <h3 style="margin-top:14px">Schreiben Teil 1 ${sc.s1}/5</h3><table><tbody>${EXAM.s1.map(f=>`<tr><td>${f.label}</td><td>${esc(ans[f.id]||'–')}</td><td style="color:${f.ok(norm(ans[f.id]))?'var(--ok)':'var(--bad)'}">${f.ok(norm(ans[f.id]))?'✓':'✗'}</td></tr>`).join('')}</tbody></table>
+ <h3 style="margin-top:14px">Schreiben Teil 2 <span class="muted small">(${words(ans.s2)} words)</span></h3><div class="reading" id="dmsg"></div>
+ <div class="toolbar"><div style="flex:0 1 140px"><label class="f" for="g2">Mark /10</label><input type="number" id="g2" min="0" max="10" step="0.5" value="${d.teacher?.s2??''}"></div><div><label class="f" for="gn">Comment for candidate</label><input type="text" id="gn" maxlength="300" value="${esc(d.teacher?.note||'')}"></div><button class="btn" id="gsave">Save mark</button></div>
+ <div class="toolbar"><button class="btn ghost" id="gcopy">Copy summary</button><button class="btn ghost" id="greset" style="color:var(--bad);border-color:var(--bad)">Reset attempt</button></div></div>`;
+ $('dmsg').textContent=ans.s2||'(no message written)';
+ $('gsave').onclick=async()=>{const v=$('g2').value;const n=v===''?null:Math.max(0,Math.min(10,+v));try{await S.db.doc('attempts/'+r.id).update({teacher:{s2:n,note:$('gn').value.trim(),at:Date.now()}});toast('Mark saved — the candidate sees it now')}catch(e){toast('Could not save the mark')}};
+ $('gcopy').onclick=()=>{const keep={att:S.att,ans:S.ans};S.att=d;S.ans=ans;const t=summaryText();S.att=keep.att;S.ans=keep.ans;copyText(t)};
+ $('greset').onclick=async()=>{if(await ask(`Delete ${d.name}'s attempt so they can start again? This can't be undone.`,'Delete','warn')){try{await S.db.doc('attempts/'+r.id).delete();S.sel=null;toast('Attempt deleted')}catch(e){toast('Could not delete')}}};
+ if(scroll)el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+$('teachBtn').onclick=()=>{if(S.view==='teacher'){S.view=S.att?(S.att.status==='submitted'?'result':'exam'):'login'}else{S.view='teacher'}render()};
+
+/* ---------- Timer ---------- */
+setInterval(()=>{
+ if(S.view!=='exam'||!S.att)return;
+ const left=Math.max(0,S.att.startedAt+MINUTES*60000-Date.now()),m=Math.floor(left/60000),s=Math.floor(left/1000)%60;
+ const t=$('timer');t.textContent=`${m}:${String(s).padStart(2,'0')} left`;t.classList.toggle('low',left<5*60000);
+ if(left<=0)submit(true);
+},1000);
+
+/* ---------- Boot ---------- */
+function useAtt(d){S.att={...d};S.ans={...(d.answers||{})};S.plays={...(d.plays||{})};S.view=d.status==='submitted'?'result':'exam'}
+S.code=ACCESS_CODE;S.canSave=false;S.canEdit=false;
+if('speechSynthesis' in window)try{speechSynthesis.getVoices();speechSynthesis.onvoiceschanged=()=>{}}catch(e){}
+{const l=lsGet();if(l&&l.name)useAtt(l);else S.view='login';render()}
+
+}
+</script>
+</body>
+</html>
