@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="de" translate="no" class="notranslate">
+<head>
+<meta charset="utf-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A1 Hören Intensiv | FCC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* VOICE: calm, exam-hall clear; encouraging for learners, exact for the teacher.
+   IDEA: the printed exam booklet + bubble answer sheet.
+   PICTURE: the working exam itself — question cards with large answer bubbles.
+   COLOUR and TYPE: ink-blue band, white paper, red-pencil accent; Archivo headings, Atkinson Hyperlegible body.
+   LAYOUT: one calm column for the exam; login = form beside the exam overview, stacked on phones. */
+:root{color-scheme:light dark;
+--bg:light-dark(#ffffff,#0e1620);--ink:light-dark(#14202c,#e7edf3);--mut:light-dark(#5a6774,#9aa8b5);
+--line:light-dark(#dde3ea,#24313e);--card:light-dark(#f3f6fa,#15212c);--brand:light-dark(#1d5bb8,#4f8ff0);
+--band:light-dark(#1d5bb8,#102a4f);--acc:#e2412b;--ok:light-dark(#17804a,#4cc285);--bad:light-dark(#c4362b,#ff7a6e);
+--sel:light-dark(#e3edfb,#18345c)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Atkinson Hyperlegible",system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:Archivo,system-ui,sans-serif;line-height:1.1;margin:0 0 .4em;text-wrap:balance}
+h1{font-size:clamp(30px,5vw,46px);font-weight:800}h2{font-size:24px;font-weight:800}h3{font-size:18px;font-weight:600}
+.top{background:var(--band);color:#fff;padding:12px max(4vw,16px);display:flex;gap:12px;align-items:center;flex-wrap:wrap;position:sticky;top:0;z-index:5}
+.top .brand{font:800 18px Archivo,sans-serif;display:flex;gap:10px;align-items:center;margin-right:auto}
+.top .brand i{display:inline-grid;place-items:center;width:40px;height:40px;flex:none;border-radius:50%;background:#fff;color:var(--band);font-style:normal;font-size:14px}
+.timer{font:600 18px Archivo,sans-serif;background:rgba(255,255,255,.14);padding:6px 12px;border-radius:8px;white-space:nowrap}
+.timer.low{background:var(--acc)}
+.chip{font-size:14px;opacity:.92;white-space:nowrap}
+.wrap{max-width:980px;margin:0 auto;padding:clamp(20px,4vw,48px) max(4vw,16px) 80px}
+.muted{color:var(--mut)}.small{font-size:14px}
+.btn{font:700 16px "Atkinson Hyperlegible",sans-serif;min-height:46px;padding:10px 20px;border-radius:10px;border:2px solid var(--brand);background:var(--brand);color:#fff;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--brand)}.btn.warn{background:var(--acc);border-color:var(--acc)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,.opt input:focus-visible+span{outline:3px solid var(--acc);outline-offset:2px}
+label.f{display:block;font-weight:700;margin:14px 0 6px}
+input[type=text],input[type=number],select,textarea{width:100%;font:16px "Atkinson Hyperlegible",sans-serif;padding:11px 12px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);min-height:46px}
+textarea{min-height:190px;resize:vertical;line-height:1.5}
+.grid2{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;align-items:start}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(18px,3vw,28px)}
+.sec{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:center;padding:14px 0;border-top:1px solid var(--line)}
+.sec:first-of-type{border-top:0}
+.sec b.n{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:2px solid var(--brand);color:var(--brand);font-family:Archivo}
+.note{border-left:4px solid var(--acc);padding:10px 14px;background:var(--card);border-radius:0 10px 10px 0;margin:16px 0;font-size:15px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px}
+.tab{flex:1 1 140px;text-align:left;border:2px solid var(--line);background:var(--bg);color:var(--ink);border-radius:12px;padding:10px 14px;cursor:pointer;font:700 16px Archivo,sans-serif;min-height:56px}
+.tab small{display:block;font:400 13px "Atkinson Hyperlegible",sans-serif;color:var(--mut)}
+.tab[aria-current=true]{border-color:var(--brand);background:var(--sel)}
+.part{margin:30px 0 10px}.part h2 small{font:400 15px "Atkinson Hyperlegible",sans-serif;color:var(--mut);display:block;margin-top:4px}
+.q{border:1px solid var(--line);border-radius:14px;padding:16px;margin:12px 0;background:var(--bg)}
+.q .qh{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap}
+.q .num{flex:none;font:800 15px Archivo;background:var(--ink);color:var(--bg);border-radius:8px;padding:3px 9px}
+.q .qt{flex:1 1 240px;font-weight:700}
+.opts{display:grid;gap:8px;margin-top:12px}
+.opts.rf{grid-template-columns:repeat(2,minmax(0,1fr))}
+.opt{display:block;cursor:pointer}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt span{display:flex;gap:12px;align-items:center;min-height:48px;padding:8px 12px;border:2px solid var(--line);border-radius:10px}
+.opt span::before{content:attr(data-k);flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;border:2px solid var(--mut);font:700 14px Archivo;color:var(--mut)}
+.opt input:checked+span{border-color:var(--brand);background:var(--sel)}
+.opt input:checked+span::before{background:var(--brand);border-color:var(--brand);color:#fff}
+.opt.right span{border-color:var(--ok)}.opt.wrong span{border-color:var(--bad)}
+.play{display:inline-flex;gap:8px;align-items:center;font:700 15px "Atkinson Hyperlegible";min-height:44px;padding:8px 14px;border-radius:999px;border:2px solid var(--brand);background:transparent;color:var(--brand);cursor:pointer}
+.play.on{background:var(--brand);color:#fff}
+.reading{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;white-space:pre-line;margin:10px 0}
+.sign{border:3px solid var(--ink);border-radius:6px;padding:12px 16px;font-weight:700;background:var(--bg);margin:10px 0;white-space:pre-line}
+.ads{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
+.ad{border:1px dashed var(--mut);border-radius:10px;padding:10px 12px;font-size:15px}
+.ad b{font-family:Archivo}
+.ad{position:relative;padding-top:30px}.ad .url{position:absolute;top:0;left:0;right:0;font:400 12px/1 'Atkinson Hyperlegible',sans-serif;background:var(--card);border-bottom:1px solid var(--line);border-radius:10px 10px 0 0;padding:7px 10px 7px 34px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--mut)}.ad .adk{position:absolute;top:3px;left:8px;z-index:1;font:800 13px Archivo;color:var(--brand)}
+.place{font:700 14px 'Atkinson Hyperlegible',sans-serif;color:var(--mut);margin:12px 0 -4px}
+.pre{font-family:'Courier New',monospace;font-weight:700}
+.cards{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 6px}.card{border:2px solid var(--ink);border-radius:10px;padding:14px 16px;min-width:110px;text-align:center;font:700 16px Archivo,sans-serif;background:var(--bg)}
+.form-sheet{border:2px solid var(--ink);border-radius:10px;padding:16px;background:var(--bg)}
+.form-sheet .row{display:grid;grid-template-columns:150px minmax(0,1fr);gap:10px;align-items:center;margin:8px 0}
+.wc{font-size:14px;text-align:right;margin-top:6px}
+.navbar{display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;margin-top:30px;padding-top:20px;border-top:2px solid var(--line)}
+.score{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:20px 0}
+.score div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.score b{display:block;font:800 clamp(26px,4vw,36px) Archivo;white-space:nowrap}
+.score span{font-size:14px;color:var(--mut)}
+.big{font:800 clamp(48px,9vw,84px)/1 Archivo;margin:8px 0}
+.pass{color:var(--ok)}.fail{color:var(--bad)}
+.tr{font-size:14px;color:var(--mut);margin-top:8px;white-space:pre-line}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-weight:700;color:var(--mut);font-size:13px}
+td.n,th.n{text-align:right;white-space:nowrap}
+tbody tr{cursor:pointer}tbody tr:hover{background:var(--card)}
+.badge{font-size:13px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);white-space:nowrap}
+.badge.done{border-color:var(--ok);color:var(--ok)}.badge.prog{border-color:var(--acc);color:var(--acc)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:end;margin:14px 0}
+.toolbar>div{flex:1 1 200px}
+.modal{position:fixed;inset:0;background:rgba(8,14,22,.55);display:grid;place-items:center;padding:16px;z-index:20}
+.modal .box{background:var(--bg);border-radius:16px;padding:24px;max-width:440px;width:100%}
+.toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:15px;z-index:30}
+.save{font-size:13px;opacity:.85;white-space:nowrap}
+pre,.scroll{overflow-x:auto}
+@media (max-width:700px){.grid2{grid-template-columns:minmax(0,1fr)}.score{grid-template-columns:repeat(2,minmax(0,1fr))}.form-sheet .row{grid-template-columns:minmax(0,1fr);gap:4px}}
+@media (max-width:520px){.ads,.opts.rf{grid-template-columns:minmax(0,1fr)}body{font-size:16px}}
+@media (max-width:600px){table{font-size:13px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px}.stack td{display:flow-root;border:0;padding:3px 0;padding-inline-start:8em;text-align:start}.stack td::before{content:attr(data-l);float:inline-start;width:7.5em;margin-inline-start:-8em;white-space:normal;color:var(--mut)}.stack td:empty{display:none}}
+@media (prefers-reduced-motion:no-preference){.q{transition:border-color .2s}}
+</style>
+<script>new MutationObserver(()=>{for(const c of document.querySelectorAll('.stack td:not([data-l])')){let i=0,p=c;while(p=p.previousElementSibling)i+=p.colSpan;c.dataset.l=c.closest('table').rows[0].cells[i]?.textContent||''}}).observe(document,{childList:true,subtree:true})</script>
+</head>
+<body translate="no" class="notranslate">
+<header class="top">
+  <a class="brand" href="index.html" style="color:#fff;text-decoration:none"><i>FCC</i><span>Formal Career Consultants<small style="display:block;font:400 13px 'Atkinson Hyperlegible',sans-serif;opacity:.85">A1 Hören Intensiv · tough mode</small></span></a>
+  <span class="save" id="save"></span>
+  <span class="timer" id="timer" hidden></span>
+  <span class="chip" id="who"></span>
+  <button class="btn ghost" id="teachBtn" hidden style="color:#fff;border-color:#fff;min-height:40px;padding:6px 14px">Teacher view</button>
+</header>
+<main class="wrap" id="app"><p class="muted">Loading the exam…</p></main>
+<footer style="border-top:1px solid var(--line);padding:20px max(4vw,16px);text-align:center;font-size:14px;color:var(--mut)">Formal Career Consultants · <a href="index.html" style="color:var(--brand)">formalconsultants.in</a> · Help: +91 73066 12344 · <a href="https://wa.me/917306612344" style="color:var(--brand)">WhatsApp</a></footer>
+
+<script>
+{
+/* ====== SETTINGS — edit these two lines ====== */
+const WHATSAPP='917306612344'; // results are sent to this WhatsApp number
+const SHEET_URL='';      // paste your Google Apps Script web-app URL here
+const ACCESS_CODE='';    // optional code candidates must type, e.g. 'A1NOV'
+/* ============================================== */
+/* ---------- Exam content (Start Deutsch 1 format, original practice material) ---------- */
+const RF=['Richtig','Falsch'];
+const SETS=[];
+const mkH=(n,d)=>{
+ const L=x=>(Array.isArray(x)?x:[x]).map(s=>[s[0],s.slice(2)]);const rf=a=>a==='R'?0:1;
+ return {id:'x'+n,name:'Hören Intensiv '+n,
+ hoeren:[
+  {part:1,title:'Hören, Teil 1',sub:'Kreuzen Sie an: a, b oder c. Sie hören jeden Text zweimal.',plays:2,items:d.h1.map((x,i)=>({id:'h'+(i+1),q:x[0],opts:x[1],a:x[2],lines:L(x[3])}))},
+  {part:2,title:'Hören, Teil 2',sub:'Kreuzen Sie an: Richtig oder Falsch? Sie hören jeden Text nur einmal.',plays:1,items:d.h2.map((x,i)=>({id:'h'+(i+7),q:x[0],opts:RF,a:rf(x[1]),lines:L(x[2])}))},
+  {part:3,title:'Hören, Teil 3',sub:'Kreuzen Sie an: a, b oder c. Sie hören jeden Text zweimal.',plays:2,items:d.h3.map((x,i)=>({id:'h'+(i+11),q:x[0],opts:x[1],a:x[2],lines:L(x[3])}))}],
+ lesen:[],s1:[],s1ans:{},s1title:'',s1pre:[],s1text:'',s2text:'',s2ph:''};
+};
+SETS.push(
+mkH(1,{
+ h1:[['Was kostet die Jacke jetzt?',['49 €','59 €','69 €'],0,['F:Entschuldigung, was kostet diese Jacke?','M:Normal neunundsechzig Euro.','F:Oh, das ist zu teuer.','M:Moment, die ist im Angebot. Zehn Euro billiger … nein, sogar zwanzig Euro billiger.','F:Super, dann nehme ich sie.']],
+  ['Wann treffen sich die zwei?',['Um 17.30 Uhr','Um 18.00 Uhr','Um 18.30 Uhr'],2,['M:Treffen wir uns um sechs vor dem Kino?','F:Um sechs habe ich noch einen Termin beim Arzt. Geht es eine halbe Stunde später?','M:Okay, dann halb sieben. Der Film beginnt ja erst um sieben.']],
+  ['Was trinkt die Frau?',['Kaffee','Tee','Orangensaft'],1,['M:Möchtest du einen Kaffee?','F:Nein, keinen Kaffee, ich schlafe sonst nicht. Vielleicht einen Orangensaft …','M:Orangensaft haben wir leider nicht mehr. Wir haben nur Tee und Wasser.','F:Dann einen Tee, bitte.']],
+  ['Auf welche Station muss der Mann?',['Station 4','Station 6','Station 8'],1,['M:Entschuldigung, ich suche Herrn Schulz. Liegt er auf Station vier?','F:Nein, er war auf Station vier. Seit gestern ist er auf Station sechs, im zweiten Stock.','M:Station sechs, danke. Und Station acht ist …?','F:Station acht ist die Kinderstation.']],
+  ['Wie fährt die Frau morgen zur Arbeit?',['Mit dem Auto','Mit dem Bus','Mit dem Fahrrad'],2,['M:Fährst du morgen wieder mit dem Bus?','F:Nein, morgen streiken die Busse. Mein Auto ist auch in der Werkstatt.','M:Und jetzt?','F:Ich nehme das Fahrrad. Es soll ja nicht regnen.']],
+  ['Welche Telefonnummer hat die Praxis?',['0621 33 48 70','0621 34 38 70','0621 33 84 70'],0,['F:Ich gebe Ihnen die Nummer von der Praxis: null sechs zwei eins, dreiunddreißig …','M:Dreiunddreißig …','F:… achtundvierzig, siebzig.','M:Also null sechs zwei eins, dreiunddreißig, achtundvierzig, siebzig?','F:Genau.']]],
+ h2:[['Der Zug nach München fährt heute von Gleis 7.','F',['M:Information zum ICE nach München, planmäßige Abfahrt zehn Uhr zwölf von Gleis sieben: Heute fährt der Zug ausnahmsweise von Gleis neun. Wir bitten um Entschuldigung.']],
+  ['Die Kunden bekommen heute Brot billiger.','R',['F:Liebe Kunden, kurz vor Ladenschluss: Alle Brote und Brötchen in unserer Bäckerei im Eingangsbereich sind ab jetzt dreißig Prozent billiger. Wurst und Käse leider nicht.']],
+  ['Die Besucher sollen nach 19 Uhr zum Ausgang im Erdgeschoss gehen.','F',['M:Liebe Besucherinnen und Besucher, die Besuchszeit endet um neunzehn Uhr. Der Haupteingang im Erdgeschoss ist dann geschlossen. Bitte benutzen Sie den Ausgang über die Notaufnahme im Untergeschoss.']],
+  ['Der Flug nach Istanbul startet eine Stunde später.','R',['F:Passagiere des Fluges TK achtzehn nach Istanbul: Ihr Flug startet nicht um vierzehn Uhr zwanzig, sondern um fünfzehn Uhr zwanzig. Neuer Ausgang ist B sechzehn.']]],
+ h3:[['Wann soll Herr Okafor kommen?',['Am Montag um 8 Uhr','Am Dienstag um 8 Uhr','Am Dienstag um 9 Uhr'],1,'F:Guten Tag, Herr Okafor, hier ist Frau Lenz vom Klinikum. Ihr erster Arbeitstag ist nicht am Montag, sondern am Dienstag. Bitte seien Sie um acht Uhr da. Um neun Uhr beginnt die Führung durch das Haus.'],
+  ['Was soll Jana kaufen?',['Milch und Eier','Brot und Eier','Milch und Brot'],0,'M:Hallo Jana, ich bin es. Kannst du noch einkaufen? Brot habe ich schon gekauft, aber wir brauchen noch Milch und sechs Eier. Käse haben wir genug.'],
+  ['Wo wartet Sven?',['Am Ausgang Süd','Am Ausgang Nord','Am Gleis 3'],1,'M:Hallo Mia, hier ist Sven. Ich bin am Bahnhof. Am Ausgang Süd ist eine Baustelle, deshalb warte ich am Ausgang Nord, direkt neben der Apotheke. Mein Zug kam auf Gleis drei an.'],
+  ['Wie viel kostet die Reparatur?',['120 €','180 €','210 €'],1,'M:Guten Tag, hier ist die Autowerkstatt Frank. Die Reparatur kostet nicht zweihundertzehn Euro, wie gesagt. Wir brauchen kein neues Teil. Es kostet nur hundertachtzig Euro.'],
+  ['Wann hat Frau Brandt frei?',['Am Mittwoch','Am Donnerstag','Am Freitag'],2,'F:Hallo Frau Brandt, hier ist die Stationsleitung. Ich muss den Dienstplan ändern. Sie arbeiten am Mittwoch und am Donnerstag Frühdienst. Dafür haben Sie am Freitag frei. Ist das okay?']]}),
+mkH(2,{
+ h1:[['Wie viele Personen kommen zum Essen?',['Vier','Fünf','Sechs'],2,['M:Wie viele sind wir am Samstag? Vier?','F:Ich, du, deine Eltern … das sind vier. Und meine Schwester kommt mit ihrem Freund.','M:Also sechs Personen.','F:Genau.']],
+  ['In welchem Stock wohnt Frau Kaya?',['Im ersten Stock','Im zweiten Stock','Im dritten Stock'],1,['M:Wohnt Frau Kaya noch im dritten Stock?','F:Nein, sie ist umgezogen, aber im gleichen Haus. Jetzt wohnt sie im zweiten Stock. Im ersten Stock wohnt ihre Tochter.']],
+  ['Was kauft der Mann?',['Äpfel und Bananen','Äpfel und Tomaten','Bananen und Tomaten'],1,['F:Was darf es sein?','M:Ein Kilo Bananen und ein Kilo Äpfel, bitte.','F:Bananen sind leider aus.','M:Schade. Dann nur die Äpfel. Und ein halbes Kilo Tomaten.']],
+  ['Wann ist der Arzttermin?',['Am Montag um 9.15 Uhr','Am Montag um 9.45 Uhr','Am Dienstag um 9.15 Uhr'],0,['F:Praxis Doktor Neumann, guten Tag.','M:Guten Tag, ich brauche einen Termin, am liebsten Dienstag.','F:Dienstag ist leider voll. Montag um Viertel nach neun?','M:Gut, Montag, Viertel nach neun.']],
+  ['Was hat die Patientin?',['Kopfschmerzen','Halsschmerzen','Rückenschmerzen'],2,['M:Haben Sie wieder Kopfschmerzen, Frau Weber?','F:Nein, die Kopfschmerzen sind weg. Aber jetzt tut mein Rücken weh. Ich kann nicht gut sitzen.']],
+  ['Wie lange bleibt der Mann in Deutschland?',['Zwei Wochen','Drei Wochen','Vier Wochen'],1,['F:Wie lange bleibst du in Deutschland? Zwei Wochen?','M:Erst wollte ich zwei Wochen bleiben, aber mein Chef hat mir noch eine Woche frei gegeben.','F:Super! Dann bleibst du drei Wochen.']]],
+ h2:[['Die Straßenbahn Linie 3 fährt heute bis zum Hauptbahnhof.','F',['F:Wegen eines Unfalls fährt die Straßenbahn Linie drei heute nur bis zur Haltestelle Rathaus. Zum Hauptbahnhof nehmen Sie bitte den Bus Linie zwölf.']],
+  ['Die Patienten auf Station 2 bekommen heute später Mittagessen.','R',['M:Liebe Patienten auf Station zwei, das Mittagessen kommt heute nicht um zwölf Uhr, sondern erst um zwölf Uhr dreißig. Wir bitten um Verständnis.']],
+  ['Das Kaufhaus ist heute bis 22 Uhr geöffnet.','F',['F:Liebe Kundinnen und Kunden, heute ist langer Einkaufsabend: Unser Kaufhaus ist bis einundzwanzig Uhr für Sie geöffnet. Das Restaurant im vierten Stock schließt um zwanzig Uhr.']],
+  ['Kinder unter 6 Jahren bezahlen heute nichts im Zoo.','R',['M:Willkommen im Tierpark! Heute ist Familientag: Kinder unter sechs Jahren haben freien Eintritt, Kinder bis vierzehn Jahre zahlen nur zwei Euro.']]],
+ h3:[['Was soll Herr Ali mitbringen?',['Seine Versichertenkarte','Seinen Pass','Ein Foto'],0,'F:Guten Tag, Herr Ali, hier ist die Praxis Doktor Lang. Morgen ist Ihr Termin um zehn Uhr. Ihren Pass brauchen Sie nicht, aber bitte bringen Sie unbedingt Ihre Versichertenkarte mit.'],
+  ['Wann kommt der Techniker?',['Am Mittwoch Vormittag','Am Mittwoch Nachmittag','Am Donnerstag Vormittag'],1,'M:Hallo Frau Rossi, hier ist die Firma Netz. Unser Techniker kann am Mittwoch leider nicht am Vormittag kommen. Er kommt am Mittwoch zwischen vierzehn und sechzehn Uhr.'],
+  ['Wie ist die neue Nummer von Lisa?',['0176 52 81 49','0176 25 81 49','0176 52 18 49'],0,'F:Hallo, hier ist Lisa. Ich habe eine neue Handynummer. Schreib mit: null eins sieben sechs, zweiundfünfzig, einundachtzig, neunundvierzig. Die alte Nummer geht nicht mehr.'],
+  ['Wohin soll Maria den Schlüssel bringen?',['Ins Büro','Zur Nachbarin','In den Briefkasten'],1,'M:Hallo Maria, hier ist Herr Fuchs. Bitte werfen Sie den Wohnungsschlüssel nicht in den Briefkasten und bringen Sie ihn auch nicht ins Büro. Geben Sie ihn bitte Frau Klein, Ihrer Nachbarin.'],
+  ['Was hat Tom vergessen?',['Seine Brille','Sein Handy','Seine Jacke'],2,'M:Hallo Schatz, hier ist Tom. Ich bin schon im Zug. Mein Handy und meine Brille habe ich dabei, aber meine Jacke liegt noch auf dem Stuhl in der Küche. Kannst du sie morgen mitbringen?']]}),
+mkH(3,{
+ h1:[['Welches Zimmer bekommt der Gast?',['Zimmer 214','Zimmer 241','Zimmer 412'],1,['F:Ihr Zimmer ist die Nummer zweihundertvierzehn.','M:Zweihundertvierzehn? Ich habe ein Zimmer mit Balkon gebucht.','F:Oh, Entschuldigung. Dann bekommen Sie Zimmer zweihunderteinundvierzig. Das hat einen Balkon.']],
+  ['Was macht die Frau am Wochenende?',['Sie arbeitet.','Sie besucht ihre Eltern.','Sie fährt ans Meer.'],0,['M:Fährst du am Wochenende ans Meer?','F:Das wollte ich, aber eine Kollegin ist krank. Ich muss am Samstag und Sonntag arbeiten. Meine Eltern besuche ich nächste Woche.']],
+  ['Wie viel kostet die Fahrkarte?',['18,50 €','23,50 €','28,50 €'],1,['M:Eine Fahrkarte nach Köln, bitte. Hin und zurück.','F:Das macht achtundzwanzig Euro fünfzig.','M:Ich habe eine Bahncard.','F:Ah, dann kostet es nur dreiundzwanzig Euro fünfzig.']],
+  ['Wo ist die Apotheke?',['Neben der Post','Gegenüber vom Bahnhof','Hinter dem Supermarkt'],2,['M:Gibt es hier eine Apotheke? Neben der Post?','F:Die Apotheke neben der Post ist geschlossen. Aber hinter dem Supermarkt ist noch eine. Gegenüber vom Bahnhof war früher auch eine, aber die gibt es nicht mehr.']],
+  ['Was isst der Patient zum Frühstück?',['Brot mit Käse','Müsli mit Joghurt','Ein Brötchen mit Marmelade'],1,['F:Herr Roth, möchten Sie ein Brötchen mit Marmelade?','M:Nein danke, ich darf keinen Zucker essen.','F:Brot mit Käse?','M:Lieber Müsli mit Joghurt, bitte.']],
+  ['Um wie viel Uhr fängt der Kurs an?',['Um 17.45 Uhr','Um 18.15 Uhr','Um 18.45 Uhr'],1,['F:Fängt der Deutschkurs um Viertel vor sechs an?','M:Nein, das war letzte Woche. Jetzt beginnt er eine halbe Stunde später, um Viertel nach sechs. Er geht bis Viertel vor acht.']]],
+ h2:[['Die Notaufnahme ist heute über den Eingang C zu erreichen.','R',['M:Achtung: Wegen Bauarbeiten erreichen Sie die Notaufnahme heute nicht über Eingang A, sondern über Eingang C an der Parkstraße.']],
+  ['Die Fahrgäste nach Bremen müssen in Hannover umsteigen.','F',['F:Liebe Fahrgäste, dieser Zug fährt heute direkt nach Bremen. Fahrgäste nach Hamburg steigen bitte in Hannover um.']],
+  ['Im Supermarkt gibt es heute Kaffee zum halben Preis.','F',['M:Liebe Kunden, heute im Angebot: Tee zum halben Preis und Kaffee zwanzig Prozent billiger. Besuchen Sie uns in Gang fünf.']],
+  ['Die Bibliothek ist am Samstag geschlossen.','R',['F:Liebe Leserinnen und Leser, die Stadtbibliothek hat ab nächster Woche neue Öffnungszeiten: Montag bis Freitag von neun bis neunzehn Uhr. Am Samstag bleibt sie ab jetzt geschlossen.']]],
+ h3:[['Wann ist das Vorstellungsgespräch?',['Um 10 Uhr','Um 11 Uhr','Um 14 Uhr'],1,'F:Guten Tag, Frau Mensah, hier ist das Altenheim Sonnenhof. Leider geht Ihr Gespräch um zehn Uhr nicht. Können Sie eine Stunde später kommen? Nachmittags um vierzehn Uhr haben wir keine Zeit.'],
+  ['Was soll Paul mitbringen?',['Getränke','Salat','Kuchen'],0,'F:Hallo Paul, hier ist Nina. Für die Party am Freitag habe ich schon zwei Salate und Anna macht einen Kuchen. Kannst du bitte Getränke mitbringen? Wasser und Saft reichen.'],
+  ['Wo ist die Prüfung?',['Im Raum 104','Im Raum 140','Im Raum 401'],2,'M:Hallo, hier ist die Sprachschule. Ihre Prüfung am Samstag ist nicht im Raum hundertvier. Sie ist im vierten Stock, im Raum vierhunderteins. Bitte seien Sie um halb neun da.'],
+  ['Wie lange dauert die Reparatur?',['Einen Tag','Drei Tage','Eine Woche'],1,'M:Guten Tag, hier ist der Handyladen. Wir haben gesagt, die Reparatur dauert einen Tag. Leider brauchen wir ein neues Teil. Es dauert jetzt drei Tage. Sie können das Handy am Freitag abholen.'],
+  ['Wer holt die Kinder ab?',['Die Mutter','Der Vater','Die Oma'],2,'F:Hallo Schatz, ich bin es. Ich muss heute länger arbeiten und du hast ja Spätdienst. Ich habe meine Mutter gefragt. Oma holt die Kinder um vier Uhr vom Kindergarten ab.']]}),
+mkH(4,{
+ h1:[['Wie viel wiegt der Patient?',['72 Kilo','76 Kilo','82 Kilo'],1,['F:Wie viel wiegen Sie, Herr Peters?','M:Zweiundachtzig Kilo … nein, das war vor dem Urlaub. Jetzt sind es sechsundsiebzig.','F:Sechsundsiebzig, gut.']],
+  ['Wann fährt der letzte Bus?',['Um 23.10 Uhr','Um 23.40 Uhr','Um 0.10 Uhr'],0,['M:Wann fährt der letzte Bus nach Hause?','F:Am Wochenende um null Uhr zehn, aber heute ist Dienstag. Da fährt der letzte Bus schon um dreiundzwanzig Uhr zehn.']],
+  ['Was möchte die Frau bestellen?',['Pizza','Nudeln mit Gemüse','Fisch mit Reis'],2,['M:Möchten Sie die Pizza?','F:Hm, Pizza hatte ich gestern. Gibt es Nudeln mit Gemüse?','M:Nudeln sind leider aus. Wir haben noch Fisch mit Reis.','F:Gut, dann den Fisch.']],
+  ['Welche Größe kauft der Mann?',['M','L','XL'],1,['F:Welche Größe brauchen Sie?','M:Normalerweise XL.','F:Diese Hemden sind aber sehr groß. Probieren Sie mal L.','M:Ja, L passt. Das nehme ich.']],
+  ['Wann hat die Frau Geburtstag?',['Am 13. März','Am 30. März','Am 13. Mai'],0,['M:Wann hast du Geburtstag? Im Mai?','F:Nein, im Mai hat meine Schwester Geburtstag. Ich habe am dreizehnten März Geburtstag.']],
+  ['Wohin geht der Mann zuerst?',['Zur Bank','Zur Post','Zum Arzt'],1,['F:Gehst du zuerst zur Bank?','M:Nein, die Bank öffnet erst um neun. Ich gehe zuerst zur Post und hole das Paket ab. Dann zur Bank. Und am Nachmittag zum Arzt.']]],
+ h2:[['Die Mitarbeiter sollen heute im Raum 3 essen.','F',['F:Liebe Mitarbeiterinnen und Mitarbeiter, die Kantine ist heute geschlossen. Es gibt Brötchen und Suppe im Personalraum im ersten Stock, nicht im Raum drei.']],
+  ['Der Bus Linie 5 hat heute Verspätung.','R',['M:Wegen einer Baustelle hat der Bus Linie fünf heute circa fünfzehn Minuten Verspätung. Die Linie sieben fährt pünktlich.']],
+  ['Das Hallenbad schließt heute früher.','R',['F:Liebe Badegäste, unser Hallenbad schließt heute wegen einer Veranstaltung schon um achtzehn Uhr, nicht wie immer um einundzwanzig Uhr.']],
+  ['Frau Novak soll in den zweiten Stock kommen.','F',['M:Frau Novak, bitte kommen Sie zur Anmeldung im Erdgeschoss. Ihr Mann wartet dort auf Sie. Frau Novak, bitte zur Anmeldung.']]],
+ h3:[['Was soll Herr Becker machen?',['Zurückrufen','Eine E-Mail schreiben','Vorbeikommen'],2,'M:Guten Tag, Herr Becker, hier ist die Bank. Bitte rufen Sie nicht an und schreiben Sie keine E-Mail. Kommen Sie bitte persönlich vorbei und bringen Sie Ihren Ausweis mit.'],
+  ['An welchem Tag ist das Fest?',['Am Freitag','Am Samstag','Am Sonntag'],2,'F:Hallo, hier ist die Leitung vom Altenheim. Unser Sommerfest ist nicht am Samstag, wie im Brief steht. Am Samstag soll es regnen. Wir feiern am Sonntag ab vierzehn Uhr.'],
+  ['Wie viel kostet der Kurs?',['60 €','90 €','120 €'],1,'M:Hallo, hier ist die Volkshochschule. Der Kochkurs kostet normal hundertzwanzig Euro. Für Sie als Studentin kostet er nur neunzig Euro. Das Material kostet nichts extra.'],
+  ['Wo treffen sich die Kollegen?',['Im Café','Im Restaurant','In der Kantine'],0,'F:Hallo Leute, hier ist Sabine. Das Restaurant ist morgen leider voll. Wir treffen uns stattdessen im Café am Markt, um neunzehn Uhr. Bis morgen!'],
+  ['Was ist kaputt?',['Die Heizung','Die Dusche','Der Herd'],1,'M:Hallo Frau Lee, hier ist der Hausmeister. Die Heizung ist schon repariert. Morgen komme ich noch wegen der Dusche. Der Herd ist ja in Ordnung, oder?']]}),
+mkH(5,{
+ h1:[['Wie viele Tabletten nimmt die Frau am Tag?',['Eine','Zwei','Drei'],1,['M:Nehmen Sie die Tabletten dreimal am Tag?','F:Früher dreimal, aber der Arzt hat gesagt: jetzt nur noch morgens und abends.','M:Also zwei Tabletten am Tag.']],
+  ['Was kostet das Zimmer pro Nacht?',['65 €','75 €','85 €'],1,['F:Was kostet das Doppelzimmer?','M:Fünfundachtzig Euro mit Frühstück.','F:Und ohne Frühstück?','M:Zehn Euro weniger.','F:Dann ohne Frühstück, bitte.']],
+  ['Wann kommt die Tochter nach Hause?',['Um 15 Uhr','Um 16 Uhr','Um 17 Uhr'],2,['M:Kommt Lea um drei aus der Schule?','F:Normalerweise ja, aber heute hat sie noch Sport bis vier. Danach geht sie zu ihrer Freundin. Sie ist um fünf zu Hause.']],
+  ['Was hat der Mann gekauft?',['Einen Fernseher','Einen Computer','Ein Handy'],1,['F:Hast du den Fernseher gekauft?','M:Nein, der war zu teuer. Ich habe einen Computer gekauft. Ein neues Handy kaufe ich nächsten Monat.']],
+  ['Welche Hausnummer hat die Firma?',['16','60','66'],1,['M:Wo ist die Firma Sander? In der Goethestraße sechzehn?','F:Nein, sechzig. Sechs, null.','M:Ah, sechzig. Danke.']],
+  ['Wie lange arbeitet die Frau heute?',['Bis 14 Uhr','Bis 16 Uhr','Bis 20 Uhr'],0,['M:Hast du heute Spätdienst bis zwanzig Uhr?','F:Eigentlich ja, aber ich habe mit Anna getauscht. Ich arbeite Frühdienst und bin um vierzehn Uhr fertig.']]],
+ h2:[['Die Teilnehmer sollen in den Raum 12 gehen.','F',['M:Liebe Kursteilnehmer, der Raum zwölf ist heute besetzt. Der Erste-Hilfe-Kurs findet im Raum einundzwanzig statt, im zweiten Stock.']],
+  ['Der Zug nach Berlin fällt heute aus.','R',['F:Achtung an Gleis vier: Der Regionalexpress nach Berlin fällt heute aus. Bitte nehmen Sie den ICE um elf Uhr zwanzig von Gleis sechs. Ihre Fahrkarte gilt auch dort.']],
+  ['Im Krankenhaus ist heute ein Fest für Kinder.','R',['M:Liebe Eltern, heute um fünfzehn Uhr gibt es in der Kinderklinik ein kleines Fest mit Musik und Kuchen. Alle Kinder und Geschwister sind eingeladen.']],
+  ['Die Apotheke am Bahnhof hat heute Nacht geöffnet.','F',['F:Apotheken-Notdienst heute Nacht: die Apotheke am Markt, Marktplatz zwei. Die Apotheke am Bahnhof ist ab zwanzig Uhr geschlossen.']]],
+ h3:[['Wann ist der neue Termin?',['Am Dienstag um 10 Uhr','Am Donnerstag um 10 Uhr','Am Donnerstag um 15 Uhr'],2,'F:Guten Tag, Herr Haddad, hier ist die Zahnarztpraxis. Ihr Termin am Dienstag fällt leider aus. Wir haben einen neuen Termin am Donnerstag. Um zehn Uhr ist schon besetzt, also um fünfzehn Uhr. Passt das?'],
+  ['Was soll Kemal kaufen?',['Medikamente','Wasser','Obst'],0,'M:Hallo Kemal, hier ist Papa. Mama ist krank. Bitte kauf auf dem Weg nach Hause ihre Medikamente in der Apotheke. Wasser und Obst haben wir noch.'],
+  ['Wie ist die Nummer der Station?',['Durchwahl 3412','Durchwahl 3421','Durchwahl 4312'],1,'F:Hallo, hier ist Station fünf. Unsere Durchwahl hat sich geändert. Die neue Nummer ist drei vier zwei eins. Die alte Nummer drei vier eins zwei funktioniert nicht mehr.'],
+  ['Wo ist die Brille von Opa?',['Im Auto','Im Wohnzimmer','Im Bad'],0,'M:Hallo, hier ist Opa. Ich finde meine Brille nicht. Im Wohnzimmer und im Bad ist sie nicht. Ah, warte … sie liegt im Auto. Alles gut, tschüss!'],
+  ['Wann fährt die Gruppe los?',['Um 7.30 Uhr','Um 8.00 Uhr','Um 8.30 Uhr'],0,'F:Hallo, hier ist Frau Wolf. Morgen fährt der Bus zum Ausflug schon um halb acht ab, nicht um acht. Bitte seien Sie pünktlich. Wir sind um achtzehn Uhr zurück.']]})
+);
+
+/* spread correct answers evenly across a/b/c and a/b */
+SETS.forEach((t,si)=>{let k=0,j=0;
+ [...t.hoeren,...t.lesen].flatMap(p=>p.items||p.groups.flatMap(g=>g.items)).forEach(it=>{
+  if(it.ads){const tg=(j++ + si)%2;if(it.a!==tg){it.ads=[it.ads[1],it.ads[0]];it.a=tg}}
+  else if(it.opts&&it.opts.length===3){const tg=[0,2,1,2,0,1,1,0,2][(k++ + si*2)%9];if(it.a!==tg){const o=[...it.opts];[o[it.a],o[tg]]=[o[tg],o[it.a]];it.opts=o;it.a=tg}}
+ });
+});
+let EXAM=SETS[0];
+const HIST='a1hoeren-history';
+const hGet=()=>{try{return JSON.parse(localStorage.getItem(HIST)||'{}')}catch(e){return {}}};
+const hSet=v=>{try{localStorage.setItem(HIST,JSON.stringify(v))}catch(e){}};
+
+const MINUTES=25, MAX={hoeren:15,lesen:0,s1:0,s2:0}, TOTAL=15, PASS=0.6;
+const allItems=k=>EXAM[k].flatMap(p=>p.items||p.groups.flatMap(g=>g.items));
+
+/* ---------- State ---------- */
+const S={view:'loading',db:null,user:null,uid:null,canEdit:false,canSave:false,att:null,ans:{},plays:{},sec:'hoeren',attempts:[],code:'',sel:null,tts:null};
+const $=id=>document.getElementById(id), app=$('app');
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm=v=>String(v||'').toLowerCase().trim();
+const LS='a1hoeren-standalone';
+const lsGet=()=>{try{return JSON.parse(localStorage.getItem(LS)||'null')}catch(e){return null}};
+const lsSet=v=>{try{localStorage.setItem(LS,JSON.stringify(v))}catch(e){}};
+function toast(m){const t=document.createElement('div');t.className='toast';t.textContent=m;document.body.append(t);setTimeout(()=>t.remove(),2600)}
+function ask(msg,ok='OK',warn){return new Promise(res=>{const m=document.createElement('div');m.className='modal';m.innerHTML=`<div class="box" role="dialog" aria-modal="true"><p></p><div class="toolbar" style="justify-content:flex-end"><button class="btn ghost" data-x="0">Cancel</button><button class="btn ${warn?'warn':''}" data-x="1">${esc(ok)}</button></div></div>`;m.querySelector('p').textContent=msg;m.onclick=e=>{const x=e.target.dataset.x;if(x!==undefined){m.remove();res(x==='1')}};document.body.append(m);m.querySelector('[data-x="1"]').focus()})}
+
+/* ---------- Scoring ---------- */
+function score(ans){
+ const c=k=>allItems(k).filter(i=>ans[i.id]===i.a).length;
+ const s1=EXAM.s1.filter(f=>f.ok(norm(ans[f.id]))).length;
+ return {hoeren:c('hoeren'),lesen:c('lesen'),s1};
+}
+const words=t=>(String(t||'').trim().match(/\S+/g)||[]).length;
+
+/* ---------- Saving ---------- */
+let saveTimer=null,saving=false,dirty=false;
+function setSave(t){$('save').textContent=t}
+function queueSave(){dirty=true;setSave('Saving…');clearTimeout(saveTimer);saveTimer=setTimeout(flush,1200)}
+async function flush(){
+ if(saving){saveTimer=setTimeout(flush,600);return}
+ if(!dirty)return; dirty=false;
+ const patch={answers:{...S.ans},plays:{...S.plays},updatedAt:Date.now()};
+ Object.assign(S.att,patch);
+ lsSet(S.att);setSave('Saved on this device');return;
+ saving=true;
+ try{await S.db.doc('attempts/'+S.uid).update(patch);setSave('All answers saved')}
+ catch(e){setSave('Not saved — check connection');dirty=true;saveTimer=setTimeout(flush,4000)}
+ saving=false;
+}
+
+/* ---------- Audio ---------- */
+let speaking=null;
+/* voices: pick a female and a male German voice where the device has them */
+const FEM=/female|weiblich|frau|anna|petra|katja|marlene|vicki|helena|hedda|katharina|amala|elke|gisela|ingrid|klara|louisa|maja|seraphina|tanja|sabine|julia|de-de-x-dea|de-de-x-deb|de-de-x-nfh|-de-f|#female/i;
+const MAL=/(^|[^e])male|männlich|markus|martin|hans|conrad|stefan|yannick|kasper|killian|klaus|ralf|bernd|christoph|florian|jonas|viktor|daniel|de-de-x-deg|de-de-x-ded|de-de-x-dee|-de-m|#male/i;
+function waitVoices(){return new Promise(r=>{let v=speechSynthesis.getVoices();if(v.length)return r(v);let done=false;const fin=()=>{if(!done){done=true;r(speechSynthesis.getVoices())}};speechSynthesis.onvoiceschanged=fin;setTimeout(fin,1500)})}
+async function pickVoices(){
+ const all=(await waitVoices()).filter(v=>/^de/i.test(v.lang));
+ const de=[...all.filter(v=>/de[-_]DE/i.test(v.lang)),...all.filter(v=>!/de[-_]DE/i.test(v.lang))];
+ const f=de.find(v=>FEM.test(v.name+' '+v.voiceURI))||null;
+ const m=de.find(v=>v!==f&&MAL.test(v.name+' '+v.voiceURI))||null;
+ let F=f,M=m;
+ if(!F&&!M){F=de[0]||null;M=de.find(v=>v!==F)||F}
+ else if(!F){F=de.find(v=>v!==M)||M}
+ else if(!M){M=de.find(v=>v!==F&&!FEM.test(v.name+' '+v.voiceURI)&&v.localService)||de.find(v=>v!==F&&!FEM.test(v.name+' '+v.voiceURI))||F}
+ return {F,M,same:!F||!M||F===M||!MAL.test((M.name||'')+' '+(M.voiceURI||''))};
+}
+function say(t,voice,pitch,rate){return new Promise(r=>{const u=new SpeechSynthesisUtterance(t);u.lang='de-DE';if(voice)u.voice=voice;u.pitch=pitch;u.rate=rate;u.onend=u.onerror=()=>r();speechSynthesis.speak(u);setTimeout(r,Math.max(4000,t.length*140))})}
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+async function speakLines(lines,num,btn){
+ const V=await pickVoices();
+ const st=s=>s==='M'?(V.same?{p:.35,r:1.08}:{p:.9,r:1.15}):(V.same?{p:1.2,r:1.18}:{p:1.05,r:1.2});
+ try{speechSynthesis.cancel()}catch(e){}
+ if(num){await say('Nummer '+num+'.',V.F,1,1.05);await wait(350)}
+ for(const [s,t] of lines){
+  const x=st(s);await say(t,s==='M'?V.M:V.F,x.p,x.r);await wait(180);
+ }
+}
+async function playItem(it,btn,max){
+ if(speaking)return;
+ const used=S.plays[it.id]||0; if(used>=max)return;
+ S.plays[it.id]=used+1; queueSave(); speaking=it.id; btn.classList.add('on'); btn.textContent='▶ Playing…';
+ const num=+String(it.id).replace(/\D/g,'')||0;
+ try{
+  if(S.tts){await S.tts.speak([{text:'Nummer '+num+'.',voice:'airy',language:'de'},...it.lines.map(([s,t])=>({text:t,voice:s==='M'?'rounded':'airy',language:'de'}))])}
+  else if('speechSynthesis' in window){await speakLines(it.lines,num,btn)}
+ }catch(e){}
+ speaking=null; setPlayBtn(btn,it.id,max);
+}
+function setPlayBtn(btn,id,max){const left=max-(S.plays[id]||0);btn.classList.remove('on');btn.disabled=left<=0;btn.textContent=left>0?`▶ Play audio (${left} left)`:'Audio used'}
+const audioOK=()=>!!S.tts||('speechSynthesis' in window);
+
+/* ---------- Views ---------- */
+function header(){
+ $('who').textContent=S.att?.name?`${S.att.name} · ${S.att.cid}`:'';
+ $('teachBtn').hidden=!S.canEdit; $('teachBtn').textContent=S.view==='teacher'?'Back to exam':'Teacher view';
+ $('timer').hidden=S.view!=='exam'; if(S.view!=='exam')setSave(S.view==='teacher'?'':$('save').textContent);
+}
+function render(){header();({loading:()=>{},login:vLogin,exam:vExam,result:vResult,teacher:vTeacher})[S.view]();window.scrollTo(0,0)}
+
+/* each test opens only with its own code (stored as hashes, not readable in the page) */
+const cyrb53=(str,seed=0)=>{let h1=0xdeadbeef^seed,h2=0x41c6ce57^seed;for(let i=0,ch;i<str.length;i++){ch=str.charCodeAt(i);h1=Math.imul(h1^ch,2654435761);h2=Math.imul(h2^ch,1597334677)}h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);return (4294967296*(2097151&h2)+(h1>>>0)).toString(16)};
+const CODEMAP={"109190cdaec573": "x1", "133449da6cf91b": "x2", "18f44f7f98dac1": "x3", "17be8d028b6607": "x4", "1b840237af327f": "x5"};
+const canonCode=c=>{let s=String(c||'').toLowerCase().normalize('NFKD').replace(/[^a-z0-9]/g,'');if(/^ht/.test(s)&&s.length>=7)s='ht'+s.slice(s.length-5);if(/^(ai|al|a1|ail|a7)/.test(s)&&s.length>=7)s='a1'+s.slice(s.length-5);if(/^tc/.test(s)&&s.length>=7)s='tc'+s.slice(s.length-5);return s.length===7?s.slice(0,2)+'-'+s.slice(2):s};
+const codeToSet=c=>CODEMAP[cyrb53('fcc-a1-2026|'+canonCode(c))];
+function vLogin(){
+ const needCode=!!S.code;
+ app.innerHTML=`<div class="grid2">
+ <section class="panel"><h1>Candidate login</h1>
+  <p class="muted">Enter your details to start the German A1 mock exam. Your answers save as you go, so you can come back if the page closes.</p>
+  <form id="lf" autocomplete="on">
+   <label class="f" for="xcode">Exam code</label><input type="text" id="xcode" required maxlength="20" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="e.g. HT-XXXXX" style="font:700 20px/1 'Courier New',monospace;letter-spacing:2px;text-transform:uppercase"><div class="small muted" style="margin-top:4px">Your teacher gives you your personal exam code. It opens only your test.</div>
+   <label class="f" for="nm">Full name</label><input type="text" id="nm" required maxlength="80" autocomplete="name" value="${esc(S.last?.name||'')}">
+   <label class="f" for="cid">Candidate ID</label><input type="text" id="cid" required maxlength="40" placeholder="e.g. A1-2026-014" value="${esc(S.last?.cid||'')}">
+   ${needCode?`<label class="f" for="code">Exam access code</label><input type="text" id="code" required maxlength="40" autocomplete="off"><div class="small muted" style="margin-top:4px">Your teacher gives you this code.</div>`:''}
+   <p id="lerr" class="small" style="color:var(--bad)" role="alert"></p>
+   <button class="btn" style="width:100%">Start exam · ${MINUTES} minutes</button>
+  </form>
+  
+ </section>
+ <section><h2>Hören Intensiv · tough mode</h2><p class="small muted">${SETS.length} extra listening tests for strong candidates. Original practice material by FCC.</p>
+  <div class="sec"><b class="n">1</b><div><b>Hören · Listening</b><div class="small muted">3 parts · 15 questions · about 15 minutes</div><div><button type="button" class="play" id="sndtest" style="margin-top:8px">▶ Test sound: Frau / Mann</button></div></div><span class="small">15 pts</span></div>
+  <div class="note"><b>Tough mode:</b> people speak faster, change their plans, and mention several times, prices and numbers. Listen for the <b>final</b> answer. <b>Teil 1 and Teil 3 play twice, Teil 2 only once.</b> Timer: ${MINUTES} minutes.</div>
+  <p class="small muted">Use headphones and a quiet room. Pass guide: ${Math.round(PASS*100)}%.</p>
+ </section></div>`;
+  {const tbn=$('sndtest');if(tbn)tbn.onclick=async()=>{if(!('speechSynthesis' in window)){tbn.textContent='No audio on this device';return}tbn.disabled=true;tbn.textContent='▶ Playing…';await speakLines([['F','Hallo! Ich bin die Frau.'],['M','Und ich bin der Mann. Hören Sie uns gut?']],0,null);const V=await pickVoices();tbn.disabled=false;tbn.textContent='▶ Test sound again';let n=$('sndinfo');if(!n){n=document.createElement('div');n.id='sndinfo';n.className='small muted';n.style.marginTop='6px';tbn.after(n)}n.textContent=V.same?'This device has one German voice. The man uses a deeper version of it. For a real male voice, use a laptop or the Microsoft Edge browser.':'Female and male voices found on this device.';};}
+  try{const pc=sessionStorage.getItem('fcc-code')||decodeURIComponent((location.hash.match(/c=([^&]+)/)||[])[1]||'');if(pc&&!$('xcode').value){$('xcode').value=pc;$('nm').focus()}}catch(e){}
+  $('lf').onsubmit=async e=>{e.preventDefault();
+  const name=$('nm').value.trim(),cid=$('cid').value.trim(),err=$('lerr');
+  const sid=codeToSet($('xcode').value);
+  if(!sid){err.textContent='That exam code is not right. Check it, or ask your teacher.';return}
+  if(hGet()[sid]){err.textContent='This test was already submitted on this device. Ask your teacher if you need to take it again.';return}
+  if(!name||!cid){err.textContent='Please enter your name and candidate ID.';return}
+  if(needCode&&norm($('code').value)!==norm(S.code)){err.textContent='That access code is not right. Ask your teacher.';return}
+  EXAM=SETS.find(t=>t.id===sid)||SETS[0];
+  S.att={set:EXAM.id,setName:EXAM.name,name,cid,status:'in_progress',startedAt:Date.now(),updatedAt:Date.now(),answers:{},plays:{}};S.ans={};S.plays={};
+  lsSet(S.att);pingStart();
+  S.view='exam';S.sec='hoeren';render();
+ };
+}
+
+function optHTML(it,review){
+ const keys=it.opts.length===2&&it.opts[0]==='Richtig'?['R','F']:['a','b','c'];
+ return `<div class="opts ${keys[0]==='R'?'rf':''}">${it.opts.map((o,i)=>{
+  const cls=review?(i===it.a?'right':(S.ans[it.id]===i?'wrong':'')):'';
+  return `<label class="opt ${cls}"><input type="radio" name="${it.id}" value="${i}" ${S.ans[it.id]===i?'checked':''} ${review?'disabled':''}><span data-k="${keys[i]}">${esc(o)}</span></label>`}).join('')}</div>`;
+}
+function adsOpts(it,review){
+ let lb=it.ads.map(a=>(a.match(/class="url">([^<]+)/)||[])[1]||'');if(!lb[0]||lb[0]===lb[1])lb=['Anzeige a','Anzeige b'];
+ return `<div class="ads">${it.ads.map((a,i)=>`<div class="ad"><span class="adk">${'ab'[i]}</span>${a}</div>`).join('')}</div>`+optHTML({...it,opts:lb},review);
+}
+function qCard(it,n,extra='',review){
+ return `<div class="q" id="q-${it.id}"><div class="qh"><span class="num">${n}</span><div class="qt">${esc(it.q)}</div>${extra}</div>${it.place?`<div class="place">${esc(it.place)}</div>`:''}${it.sign?`<div class="sign">${esc(it.sign)}</div>`:''}${it.ads?adsOpts(it,review):optHTML(it,review)}${review&&it.lines?`<div class="tr"><b>Transcript:</b> ${esc(it.lines.map(l=>l[1]).join(' / '))}</div>`:''}</div>`;
+}
+function secHoeren(review){
+ let n=0;
+ return (audioOK()||review?'':`<div class="note">Audio can't play on this device. Try the exam on a laptop browser, or ask your teacher.</div>`)+EXAM.hoeren.map(p=>`<div class="part"><h2>${p.title}<small>${p.sub}</small></h2></div>`+p.items.map(it=>{n++;return qCard(it,n,review?'':`<button type="button" class="play" data-play="${it.id}" data-max="${p.plays}"></button>`,review)}).join('')).join('');
+}
+function secLesen(review){
+ let n=0;
+ return EXAM.lesen.map(p=>`<div class="part"><h2>${p.title}<small>${p.sub}</small></h2></div>`+p.groups.map(g=>(g.text?`<div class="reading">${esc(g.text)}</div>`:'')+g.items.map(it=>{n++;return qCard(it,n,'',review)}).join('')).join('')).join('');
+}
+function secSchreiben(review){
+ const t2=S.ans.s2||'';
+ return `<div class="part"><h2>Schreiben, Teil 1<small>Lesen Sie den Text und ergänzen Sie die fünf fehlenden Informationen im Formular. 5 Punkte.</small></h2></div>
+ <div class="reading">${esc(EXAM.s1text)}</div>
+ <div class="form-sheet"><h3>${esc(EXAM.s1title)}</h3>
+  ${(EXAM.s1pre||[]).map(([k,v])=>`<div class="row"><b>${esc(k)}</b><span class="pre">${esc(v)}</span></div>`).join('')}
+  ${EXAM.s1.map((f,i)=>{const v=S.ans[f.id]||'';const ok=review?(f.ok(norm(v))?'✓':'✗ '+EXAM.s1ans[f.id]):'';
+   return `<div class="row"><label for="${f.id}"><b>${i+1}. ${f.label}</b></label><div>${f.select?`<select id="${f.id}" data-txt ${review?'disabled':''}><option value="">— bitte wählen —</option>${f.select.map(o=>`<option ${v===o?'selected':''}>${o}</option>`).join('')}</select>`:`<input type="text" id="${f.id}" data-txt value="${esc(v)}" maxlength="60" ${review?'disabled':''}>`}${review?`<div class="small" style="color:${ok==='✓'?'var(--ok)':'var(--bad)'}">${esc(ok)}</div>`:''}</div></div>`}).join('')}
+ </div>
+ <div class="part"><h2>Schreiben, Teil 2<small>Schreiben Sie einen kurzen Brief (circa 30 Wörter). 10 Punkte, bewertet von Ihrer Lehrkraft.</small></h2></div>
+ <div class="reading">${esc(EXAM.s2text)}</div>
+ <label class="f" for="s2">Ihr Brief</label>
+ <textarea id="s2" data-txt ${review?'disabled':''} placeholder="${esc(EXAM.s2ph)}">${esc(t2)}</textarea>
+ <div class="wc muted" id="wc">${words(t2)} words · aim for about 30</div>`;
+}
+function secSprechen(){
+ const sp=EXAM.sp,chips=a=>`<div class="cards">${a.map(w=>`<span class="card">${esc(w)}</span>`).join('')}</div>`;
+ return `<div class="note">Sprechen is done live with your teacher or a partner (about 15 minutes, 15 points). Use these cards to practise. They are not scored here.</div>
+ <div class="part"><h2>Sprechen, Teil 1: Sich vorstellen<small>Stellen Sie sich vor. Buchstabieren Sie dann Ihren Namen und sagen Sie eine Zahl (z. B. Telefonnummer, Hausnummer).</small></h2></div>
+ ${chips(['Name?','Alter?','Land?','Wohnort?','Sprachen?','Beruf?','Hobby?'])}
+ <div class="part"><h2>Sprechen, Teil 2: Um Informationen bitten und Informationen geben<small>Ziehen Sie eine Karte. Stellen Sie mit dem Wort eine Frage. Ihr Partner / Ihre Partnerin antwortet.</small></h2></div>
+ ${sp.t2.map(([th,ws])=>`<h3 style="margin-top:14px">Thema: ${esc(th)}</h3>${chips(ws)}`).join('')}
+ <div class="part"><h2>Sprechen, Teil 3: Bitten formulieren und darauf reagieren<small>Ziehen Sie eine Karte. Formulieren Sie eine Bitte, z. B. „Können Sie bitte …?“ / „Ich hätte gern …“. Ihr Partner / Ihre Partnerin reagiert.</small></h2></div>
+ ${chips(sp.t3)}`;
+}
+const SECS=[['hoeren','Hören','Listening']];
+function counts(){
+ return {hoeren:allItems('hoeren').filter(i=>S.ans[i.id]!==undefined).length+'/15',lesen:allItems('lesen').filter(i=>S.ans[i.id]!==undefined).length+'/15',
+  schreiben:(EXAM.s1.filter(f=>(S.ans[f.id]||'').trim()).length+(words(S.ans.s2)>0?1:0))+'/6',sprechen:'cards'};
+}
+function updTabs(){const c=counts();for(const [k] of SECS){if(k==='sprechen')continue;const el=document.querySelector(`[data-sec="${k}"] small`);if(el)el.textContent=el.dataset.l+' · '+c[k]+' done'}}
+
+function vExam(){
+ const c=counts(), i=SECS.findIndex(s=>s[0]===S.sec);
+ app.innerHTML=`<nav class="tabs" aria-label="Sections">${SECS.map(([k,de,en])=>`<button class="tab" data-sec="${k}" aria-current="${k===S.sec}">${de}<small data-l="${en}">${k==='sprechen'?en+' · practice':en+' · '+c[k]+' done'}</small></button>`).join('')}</nav>
+ <div id="sec">${{hoeren:secHoeren,lesen:secLesen,schreiben:secSchreiben,sprechen:secSprechen}[S.sec](false)}</div>
+ <div class="navbar">${i>0?`<button class="btn ghost" data-go="${SECS[i-1][0]}">← ${SECS[i-1][1]}</button>`:'<span></span>'}
+ ${i===SECS.length-1?`<button class="btn warn" id="submit">Submit test</button>`:''}${i<SECS.length-1?`<button class="btn" data-go="${SECS[i+1][0]}">Next: ${SECS[i+1][1]} →</button>`:''}</div>`;
+ app.querySelectorAll('[data-play]').forEach(b=>{const it=allItems('hoeren').find(x=>x.id===b.dataset.play);const max=+b.dataset.max;setPlayBtn(b,it.id,max);if(!audioOK())b.disabled=true;b.onclick=()=>playItem(it,b,max)});
+ app.querySelectorAll('[data-sec],[data-go]').forEach(b=>b.onclick=()=>{S.sec=b.dataset.sec||b.dataset.go;vExam();window.scrollTo(0,0)});
+ app.querySelectorAll('input[type=radio]').forEach(r=>r.onchange=()=>{S.ans[r.name]=+r.value;queueSave();updTabs()});
+ app.querySelectorAll('[data-txt]').forEach(t=>t.oninput=t.onchange=()=>{S.ans[t.id]=t.value;if(t.id==='s2')$('wc').textContent=words(t.value)+' words · aim for about 30';queueSave();updTabs()});
+ const sb=$('submit'); if(sb)sb.onclick=async()=>{
+  const c=counts(); const miss=15-(+c.hoeren.split('/')[0]);
+  if(await ask(miss>0?`You have ${miss} unanswered question${miss>1?'s':''}. Submit anyway? You can't change answers afterwards.`:'Submit your exam? You can\'t change answers afterwards.','Submit','warn'))submit();
+ };
+}
+let submitting=false;
+const EXAMLABEL='Hören Intensiv';
+function pingStart(){if(!SHEET_URL||!S.att)return;const a=S.att;try{fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({event:'start',exam:EXAMLABEL,test:EXAM.name,name:a.name,cid:a.cid,startedAt:new Date(a.startedAt).toISOString()})}).catch(()=>{})}catch(e){}}
+async function sendSheet(){
+ if(!SHEET_URL)return false;
+ const a=S.att,sc=a.scores||score(S.ans);
+ const body={event:'submit',exam:EXAMLABEL,test:EXAM.name,name:a.name,cid:a.cid,startedAt:new Date(a.startedAt).toISOString(),submittedAt:new Date(a.submittedAt).toISOString(),autoSubmitted:!!a.autoSubmitted,
+  hoeren:sc.hoeren,lesen:sc.lesen,schreiben1:sc.s1,autoTotal:sc.hoeren+sc.lesen+sc.s1,
+  form:EXAM.s1.map(f=>f.label+': '+(S.ans[f.id]||'-')).join('; '),message:S.ans.s2||'',words:words(S.ans.s2),
+  answers:allItems('hoeren').concat(allItems('lesen')).map(i=>i.id+'='+(S.ans[i.id]===undefined?'-':(i.ads?'ab':i.opts.length===2?'RF':'abc')[S.ans[i.id]])).join(' ')};
+ try{await fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body)});return true}catch(e){return false}
+}
+async function submit(auto){
+ if(submitting)return; submitting=true; clearTimeout(saveTimer);
+ const sc=score(S.ans);
+ const patch={answers:{...S.ans},plays:{...S.plays},status:'submitted',submittedAt:Date.now(),updatedAt:Date.now(),scores:sc,autoSubmitted:!!auto};
+ Object.assign(S.att,patch);
+ lsSet(S.att); S.att.sent=await sendSheet(); lsSet(S.att); setSave('');
+ {const h=hGet(),sc2=S.att.scores;h[EXAM.id]={pct:Math.round((sc2.hoeren+sc2.lesen+sc2.s1)/(TOTAL-MAX.s2)*100),at:Date.now()};hSet(h)}
+ S.view='result';render(); if(auto)toast('Time is up — your exam was submitted.');
+}
+
+function summaryText(){
+ const a=S.att,sc=a.scores||score(S.ans),t=a.teacher;
+ return `A1 Hören Intensiv (tough) — ${EXAM.name}\nName: ${a.name}\nCandidate ID: ${a.cid}\nSubmitted: ${new Date(a.submittedAt||Date.now()).toLocaleString()}\nHören: ${sc.hoeren}/15\nAnswers: ${allItems('hoeren').concat(allItems('lesen')).map(i=>i.id+'='+(S.ans[i.id]??'-')).join(',')}`;
+}
+function vResult(){
+ const a=S.att,sc=a.scores||score(S.ans),t=a.teacher||{};
+ const auto=sc.hoeren+sc.lesen+sc.s1, graded=t.s2!=null, tot=auto+(graded?+t.s2:0);
+ const pct=Math.round(tot/(graded?TOTAL:TOTAL-MAX.s2)*100);
+ app.innerHTML=`<h1>Your result · ${esc(EXAM.name)}</h1>
+ <p class="muted">${esc(a.name)} · ${esc(a.cid)} · submitted ${new Date(a.submittedAt).toLocaleString()}</p>
+ <div class="big ${pct>=PASS*100?'pass':'fail'}">${pct}%</div>
+ <p>${auto} of ${TOTAL} points. ${pct>=PASS*100?'Well done — that is above the pass guide.':'Keep practising — the pass guide is '+Math.round(PASS*100)+'%.'}</p>
+ <div class="score"><div><span>Hören Teil 1</span><b>${allItems('hoeren').slice(0,6).filter(i=>S.ans[i.id]===i.a).length}/6</b></div><div><span>Hören Teil 2</span><b>${allItems('hoeren').slice(6,10).filter(i=>S.ans[i.id]===i.a).length}/4</b></div><div><span>Hören Teil 3</span><b>${allItems('hoeren').slice(10).filter(i=>S.ans[i.id]===i.a).length}/5</b></div><div><span>Total</span><b>${sc.hoeren}/15</b></div></div>
+ ${t.note?`<div class="note"><b>Teacher's comment:</b> <span id="tn"></span></div>`:''}
+ <div class="toolbar"><a class="btn" id="wa" target="_blank" rel="noopener" style="background:#1f8f4e;border-color:#1f8f4e;text-decoration:none;display:inline-flex;align-items:center">Send result to FCC on WhatsApp</a><button class="btn ghost" id="copy">Copy result summary</button><button class="btn ghost" id="another">Take another mock test</button>${a.sent?'<span class="small muted">✓ Also saved to your teacher\'s sheet.</span>':''}</div><div class="note" style="margin-top:0"><b>Important:</b> tap the green button and press send in WhatsApp so FCC receives your result.</div>
+ <h2 style="margin-top:36px">Review your answers</h2>
+ <p class="muted small">Green shows the correct answer; red shows your answer where it was wrong.</p>
+ <h2 style="margin-top:20px">Hören</h2>${secHoeren(true)}`;
+ if(t.note)$('tn').textContent=t.note;
+ $('wa').href='https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(summaryText());
+ $('copy').onclick=()=>copyText(summaryText());
+ $('another').onclick=async()=>{if(await ask('Start another mock test? Make sure you have sent this result on WhatsApp first.','Continue')){S.last={name:S.att.name,cid:S.att.cid};S.att=null;S.ans={};S.plays={};submitting=false;try{localStorage.removeItem(LS)}catch(e){}S.view='login';render()}};
+ const rs=$('resend');if(rs)rs.onclick=async()=>{rs.disabled=true;S.att.sent=await sendSheet();lsSet(S.att);vResult();toast(S.att.sent?'Sent':'Still not sent — check your internet')};
+}
+async function copyText(txt){try{await navigator.clipboard.writeText(txt);toast('Copied')}catch(e){const m=document.createElement('div');m.className='modal';m.innerHTML='<div class="box"><p>Select all and copy:</p><textarea style="min-height:220px"></textarea><div class="toolbar" style="justify-content:flex-end"><button class="btn">Close</button></div></div>';m.querySelector('textarea').value=txt;m.querySelector('button').onclick=()=>m.remove();document.body.append(m);m.querySelector('textarea').select()}}
+
+/* ---------- Teacher ---------- */
+function vTeacher(){
+ const rows=[...S.attempts].sort((a,b)=>(b.d.updatedAt||0)-(a.d.updatedAt||0));
+ const done=rows.filter(r=>r.d.status==='submitted');
+ const avg=done.length?Math.round(done.reduce((s,r)=>s+tot(r.d).pct,0)/done.length):0;
+ app.innerHTML=`<h1>Teacher dashboard</h1>
+ <p class="muted">Every candidate's attempt appears here live. Tap a row to see their answers and mark the message.</p>
+ <div class="score"><div><span>Candidates</span><b>${rows.length}</b></div><div><span>Submitted</span><b>${done.length}</b></div><div><span>In progress</span><b>${rows.length-done.length}</b></div><div><span>Average</span><b>${done.length?avg+'%':'—'}</b></div></div>
+ <div class="panel"><div class="toolbar"><div><label class="f" for="ac" style="margin-top:0">Exam access code</label><input type="text" id="ac" value="${esc(S.code)}" placeholder="Leave empty for no code" maxlength="40"></div><button class="btn" id="saveCode">Save code</button><button class="btn ghost" id="csv">Copy all results (CSV)</button></div>
+ <p class="small muted" style="margin:0">Candidates must type this code to start. Changing it doesn't affect anyone already in the exam.</p></div>
+ ${rows.length?`<div style="margin-top:22px"><table class="stack"><thead><tr><th>Candidate</th><th>ID</th><th>Status</th><th class="n">Hören</th><th class="n">Lesen</th><th class="n">Schreiben</th><th class="n">Total</th></tr></thead><tbody>
+ ${rows.map(r=>{const d=r.d,sc=d.scores||score(d.answers||{}),t=tot(d);return `<tr data-id="${esc(r.id)}"><td><b>${esc(d.name)}</b></td><td>${esc(d.cid)}</td><td>${d.status==='submitted'?`<span class="badge done">Submitted</span>`:`<span class="badge prog">In progress</span>`}</td><td class="n">${sc.hoeren}/15</td><td class="n">${sc.lesen}/15</td><td class="n">${sc.s1}+${d.teacher?.s2??'?'}/15</td><td class="n"><b>${d.status==='submitted'?t.pct+'%':'—'}</b></td></tr>`}).join('')}
+ </tbody></table></div>`:`<div class="note">No attempts yet. Share this page with your candidates as <b>Contributor</b> (so their answers can save), then their results show up here.</div>`}
+ <div id="detail"></div>`;
+ $('saveCode').onclick=async()=>{try{await S.db.doc('config/exam').set({code:$('ac').value.trim()});S.code=$('ac').value.trim();toast('Access code saved')}catch(e){toast('Could not save the code')}};
+ $('csv').onclick=()=>copyText(['Name,Candidate ID,Status,Hören,Lesen,Schreiben 1,Schreiben 2,Total %,Submitted'].concat(rows.map(r=>{const d=r.d,sc=d.scores||score(d.answers||{});return [d.name,d.cid,d.status,sc.hoeren,sc.lesen,sc.s1,d.teacher?.s2??'',d.status==='submitted'?tot(d).pct:'',d.submittedAt?new Date(d.submittedAt).toISOString():''].map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')})).join('\n'));
+ app.querySelectorAll('tbody tr').forEach(tr=>tr.onclick=()=>{S.sel=tr.dataset.id;detail(true)});
+ if(S.sel)detail();
+}
+function tot(d){const sc=d.scores||score(d.answers||{});const g=d.teacher?.s2!=null;const p=sc.hoeren+sc.lesen+sc.s1+(g?+d.teacher.s2:0);return {pts:p,pct:Math.round(p/(g?TOTAL:TOTAL-MAX.s2)*100)}}
+function detail(scroll){
+ const r=S.attempts.find(x=>x.id===S.sel),el=$('detail'); if(!r||!el){if(el)el.innerHTML='';return}
+ const d=r.d,ans=d.answers||{},sc=d.scores||score(ans);
+ const line=k=>allItems(k).map((it,i)=>{const v=ans[it.id];const ok=v===it.a;return `<span title="${esc(it.q)}" style="display:inline-block;min-width:44px;margin:2px;padding:2px 6px;border-radius:6px;border:1px solid ${v===undefined?'var(--line)':ok?'var(--ok)':'var(--bad)'}">${i+1} ${v===undefined?'–':ok?'✓':'✗'}</span>`}).join('');
+ el.innerHTML=`<div class="panel" style="margin-top:24px"><h2>${esc(d.name)} <span class="muted small">· ${esc(d.cid)}</span></h2>
+ <p class="small muted">Started ${new Date(d.startedAt).toLocaleString()}${d.submittedAt?' · submitted '+new Date(d.submittedAt).toLocaleString()+(d.autoSubmitted?' (time ran out)':''):' · still working'}</p>
+ <h3>Hören ${sc.hoeren}/15</h3><div>${line('hoeren')}</div><h3 style="margin-top:14px">Lesen ${sc.lesen}/15</h3><div>${line('lesen')}</div>
+ <h3 style="margin-top:14px">Schreiben Teil 1 ${sc.s1}/5</h3><table><tbody>${EXAM.s1.map(f=>`<tr><td>${f.label}</td><td>${esc(ans[f.id]||'–')}</td><td style="color:${f.ok(norm(ans[f.id]))?'var(--ok)':'var(--bad)'}">${f.ok(norm(ans[f.id]))?'✓':'✗'}</td></tr>`).join('')}</tbody></table>
+ <h3 style="margin-top:14px">Schreiben Teil 2 <span class="muted small">(${words(ans.s2)} words)</span></h3><div class="reading" id="dmsg"></div>
+ <div class="toolbar"><div style="flex:0 1 140px"><label class="f" for="g2">Mark /10</label><input type="number" id="g2" min="0" max="10" step="0.5" value="${d.teacher?.s2??''}"></div><div><label class="f" for="gn">Comment for candidate</label><input type="text" id="gn" maxlength="300" value="${esc(d.teacher?.note||'')}"></div><button class="btn" id="gsave">Save mark</button></div>
+ <div class="toolbar"><button class="btn ghost" id="gcopy">Copy summary</button><button class="btn ghost" id="greset" style="color:var(--bad);border-color:var(--bad)">Reset attempt</button></div></div>`;
+ $('dmsg').textContent=ans.s2||'(no message written)';
+ $('gsave').onclick=async()=>{const v=$('g2').value;const n=v===''?null:Math.max(0,Math.min(10,+v));try{await S.db.doc('attempts/'+r.id).update({teacher:{s2:n,note:$('gn').value.trim(),at:Date.now()}});toast('Mark saved — the candidate sees it now')}catch(e){toast('Could not save the mark')}};
+ $('gcopy').onclick=()=>{const keep={att:S.att,ans:S.ans};S.att=d;S.ans=ans;const t=summaryText();S.att=keep.att;S.ans=keep.ans;copyText(t)};
+ $('greset').onclick=async()=>{if(await ask(`Delete ${d.name}'s attempt so they can start again? This can't be undone.`,'Delete','warn')){try{await S.db.doc('attempts/'+r.id).delete();S.sel=null;toast('Attempt deleted')}catch(e){toast('Could not delete')}}};
+ if(scroll)el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+$('teachBtn').onclick=()=>{if(S.view==='teacher'){S.view=S.att?(S.att.status==='submitted'?'result':'exam'):'login'}else{S.view='teacher'}render()};
+
+/* ---------- Timer ---------- */
+setInterval(()=>{
+ if(S.view!=='exam'||!S.att)return;
+ const left=Math.max(0,S.att.startedAt+MINUTES*60000-Date.now()),m=Math.floor(left/60000),s=Math.floor(left/1000)%60;
+ const t=$('timer');t.textContent=`${m}:${String(s).padStart(2,'0')} left`;t.classList.toggle('low',left<5*60000);
+ if(left<=0)submit(true);
+},1000);
+
+/* ---------- Boot ---------- */
+function useAtt(d){EXAM=SETS.find(t=>t.id===d.set)||SETS[0];S.att={...d};S.ans={...(d.answers||{})};S.plays={...(d.plays||{})};S.view=d.status==='submitted'?'result':'exam'}
+S.code=ACCESS_CODE;S.canSave=false;S.canEdit=false;
+if('speechSynthesis' in window)try{speechSynthesis.getVoices();speechSynthesis.onvoiceschanged=()=>{}}catch(e){}
+{const l=lsGet();if(l&&l.name)useAtt(l);else S.view='login';render()}
+
+}
+</script>
+<div id="trx" hidden style="position:fixed;inset:0;z-index:99;background:#fff;color:#14202c;display:grid;place-items:center;padding:24px;text-align:center;font:17px/1.5 system-ui,sans-serif"><div style="max-width:420px"><p style="font:800 24px/1.2 system-ui,sans-serif;margin:0 0 12px">Please turn off translation</p><p style="margin:0 0 10px">This exam must be done in German. Your browser translated the page.</p><p style="margin:0">In Chrome: tap ⋮ → <b>Translate</b> → choose <b>German / Show original</b>.<br>Or reload the page without translation.</p></div></div>
+<script>
+{
+ const box=document.getElementById('trx');
+ const check=()=>{const h=document.documentElement;
+  const tr=/translated-(ltr|rtl)/.test(h.className)||h.lang&&!/^(de|en)/i.test(h.lang)||!!document.querySelector('font[style*="vertical-align"],.goog-te-banner-frame,#goog-gt-tt,[class*="skiptranslate"]');
+  box.hidden=!tr;box.style.display=tr?'grid':'none';};
+ new MutationObserver(check).observe(document.documentElement,{attributes:true,attributeFilter:['class','lang'],childList:true,subtree:true});
+ check();
+}
+</script>
+</body>
+</html>
